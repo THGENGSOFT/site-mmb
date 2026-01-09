@@ -422,3 +422,17 @@ section {
         border-bottom: none;
     }
 }
+
+/* =========================================
+   AJUSTES DA LOGO NO RODAPÉ
+   ========================================= */
+.footer-logo {
+    max-width: 150px; /* Largura máxima */
+    margin-bottom: 15px;
+    display: block;
+    /* Se a logo tiver fundo branco chapado e ficar feio no fundo escuro,
+       podemos arredondar as bordas ou colocar um fundo branco nela: */
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+}
