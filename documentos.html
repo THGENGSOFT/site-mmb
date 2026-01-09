@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentos | Área Restrita MMB</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Um loader simples para mostrar enquanto a autenticação é verificada */
+        .loader-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #f8f9fa;
+        }
+        .loader {
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #3498db;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <!-- Tela de Carregamento (visível enquanto o script verifica o login) -->
+    <div id="loader" class="loader-container">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Conteúdo Principal da Página (começa oculto) -->
+    <main id="conteudo" class="hidden container mx-auto p-8">
+        <header class="bg-white p-6 rounded-lg shadow-md mb-8 flex justify-between items-center">
+            <div>
+                <h1 class="text-3xl font-bold text-gray-800">Documentos Internos</h1>
+                <p class="text-gray-500">Acesso exclusivo para parceiros cadastrados. Logado como: <span id="user-email" class="font-semibold"></span></p>
+            </div>
+            <a href="acesso-restrito.html" class="py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-red-600 hover:bg-red-700">
+                Sair
+            </a>
+        </header>
+
+        <div class="bg-white p-6 rounded-lg shadow-md">
+            <h2 class="text-2xl font-semibold text-gray-700 mb-4">Catálogos e Tabelas</h2>
+            <p class="mb-6">Aqui estão os links para os materiais mais recentes. Este conteúdo não é público.</p>
+            <ul class="list-disc list-inside space-y-3 text-blue-600">
+                <li><a href="#" class="hover:underline">Tabela de Preços Varejo - Setembro 2025.xlsx</a></li>
+                <li><a href="#" class="hover:underline">Catálogo Completo Terraplast 2025.pdf</a></li>
+                <li><a href="#" class="hover:underline">Apresentação Institucional Pollymer.pptx</a></li>
+                <li><a href="#" class="hover:underline">Manual Técnico de Bombas PR.pdf</a></li>
+            </ul>
+        </div>
+    </main>
+    
+    <!-- ======================================================= -->
+    <!-- SCRIPT DE VERIFICAÇÃO (O "VIGIA" DA PÁGINA)           -->
+    <!-- ======================================================= -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+        // !! IMPORTANTE !!
+        // Use EXATAMENTE a mesma configuração do seu arquivo de login.
+        const firebaseConfig = {
+  apiKey: "AIzaSyBeYI4mBreTpAdTSD-njz2evEG2FYSx-sE",
+  authDomain: "mmbrepresentacoes-e2371.firebaseapp.com",
+  projectId: "mmbrepresentacoes-e2371",
+  storageBucket: "mmbrepresentacoes-e2371.firebasestorage.app",
+  messagingSenderId: "86673676966",
+  appId: "1:86673676966:web:f851f535fa58d13b943267",
+  measurementId: "G-DHVKHL4YTW"
+};
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        const loader = document.getElementById('loader');
+        const conteudo = document.getElementById('conteudo');
+        const userEmailSpan = document.getElementById('user-email');
+
+        // Esta função verifica o estado do login ASSIM QUE A PÁGINA CARREGA
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                // 1. O usuário ESTÁ logado.
+                console.log("Acesso autorizado para:", user.email);
+
+                // Mostra o e-mail do usuário
+                userEmailSpan.textContent = user.email;
+
+                // Esconde o loader e mostra o conteúdo da página
+                loader.style.display = 'none';
+                conteudo.classList.remove('hidden');
+
+            } else {
+                // 2. O usuário NÃO está logado.
+                console.log("Acesso negado. Redirecionando para a página de login...");
+                
+                // CORREÇÃO: Constrói uma URL absoluta para o redirecionamento para evitar erros.
+                const currentPath = window.location.pathname;
+                const redirectPath = currentPath.substring(0, currentPath.lastIndexOf('/') + 1) + 'acesso-restrito.html';
+                window.location.href = redirectPath;
+            }
+        });
+    </script>
+
+</body>
+</html>
+

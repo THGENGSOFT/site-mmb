@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acesso Restrito | MMB Representações</title>
+    <link rel="icon" type="image/png" href="img/cadeado.png">
+    <!-- Tailwind CSS para estilização rápida e moderna -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Estilo para a animação de carregamento */
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 4px solid #3498db;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 font-sans flex items-center justify-center min-h-screen">
+
+    <div class="container mx-auto p-4 max-w-lg">
+
+        <!-- ===== TELA DE LOGIN (Visível por padrão) ===== -->
+        <div id="login-view" class="bg-white p-8 rounded-lg shadow-lg">
+            <div class="text-center mb-6">
+                <img src="img/logo.png" alt="Logo MMB Representações" class="w-48 mx-auto mb-4">
+                <h1 class="text-2xl font-bold text-gray-700">Acesso Restrito</h1>
+                <p class="text-gray-500">Faça login ou cadastre-se para continuar</p>
+            </div>
+            
+            <form id="auth-form" class="space-y-4">
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-600">Email</label>
+                    <input type="email" id="email" name="email" required class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                </div>
+                
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-600">Senha</label>
+                    <input type="password" id="password" name="password" required class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                </div>
+
+                <!-- Mensagens de Erro/Sucesso -->
+                <div id="message" class="text-center text-sm"></div>
+                
+                <div class="flex items-center justify-center space-x-4 pt-2">
+                    <button type="button" id="login-button" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                        Entrar
+                    </button>
+                    <button type="button" id="register-button" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
+                        Cadastrar
+                    </button>
+                </div>
+                 <div id="loader" class="hidden mx-auto loader"></div>
+            </form>
+        </div>
+
+        <!-- ===== CONTEÚDO PROTEGIDO (Oculto por padrão) ===== -->
+        <div id="protected-content" class="hidden bg-white p-8 rounded-lg shadow-lg">
+            <div class="flex justify-between items-center mb-6">
+                <div>
+                    <h1 class="text-2x2 font-bold text-gray-800">Bem-vindo(a)!</h1>
+                    <p class="text-gray-600 text-2x1">Conteúdo exclusivo</p>
+                </div>
+                <div>
+                     <span id="user-email" class="text-sm text-gray-500 mr-4"></span>
+                    <button id="logout-button" class="py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-red-600 hover:bg-red-700">
+                        Sair
+                    </button>   
+                </div>
+            </div>
+            
+            <div class="border-t pt-4">
+                <h2 class="text-xl font-semibold text-gray-700 mb-4">Seus Documentos</h2>
+                <p class="text-gray-600">
+                    Tabelas de preços, documentos internos, catálogos exclusivos e informações para a equipe.
+                </p>
+                <ul class="list-disc list-inside mt-4 space-y-2 text-gray-600">
+                    <li><a href="terraplast.html" class="text-blue-600 hover:underline"><strong><em>Terraplast Industrial de Plasticos LTDA</em></strong><br>CNPJ: 04.299.490/0001-20</a></li>
+                    <li><a href="pollymer.html" class="text-blue-600 hover:underline"><strong><em>Pollymer Polymer Industria e Comercio de Plasticos LTDA</em></strong><br>CNPJ: 01.978.934/0001-65</a></li>
+                    <li><a href="jm.html" class="text-blue-600 hover:underline"><strong><em>Jm Plasticos J A dos Santos Moreira</em></strong><br>CNPJ: 41.550.444/0001-88</a></li>
+                    <li><a href="polifix.html" class="text-blue-600 hover:underline"><strong><em>Polifix Prego Telheiro E Poletto LTDA</em></strong><br>CNPJ: 80.242.084/0001-09</a></li>
+                    <li><a href="lgsteel.html" class="text-blue-600 hover:underline"><strong><em>Lg Steel Industrial e Comercial de Metais LTDA</em></strong><br>CNPJ: 20.811.992/0001-44</a></li>
+                    <li><a href="#" class="text-blue-600 hover:underline">Política Comercial Interna.docx</a></li>
+                    <li><a href="documentos.html" class="text-blue-600 hover:underline">Documentos</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS DO FIREBASE -->
+    <script type="module">
+        // Importar as funções necessárias do SDK do Firebase
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+        import { 
+            getAuth, 
+            createUserWithEmailAndPassword, 
+            signInWithEmailAndPassword, 
+            signOut, 
+            onAuthStateChanged 
+        } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+        // =======================================================================
+        // PASSO 1: COLE SUA CONFIGURAÇÃO DO FIREBASE AQUI
+        // =======================================================================
+        const firebaseConfig = {
+  apiKey: "AIzaSyBeYI4mBreTpAdTSD-njz2evEG2FYSx-sE",
+  authDomain: "mmbrepresentacoes-e2371.firebaseapp.com",
+  projectId: "mmbrepresentacoes-e2371",
+  storageBucket: "mmbrepresentacoes-e2371.firebasestorage.app",
+  messagingSenderId: "86673676966",
+  appId: "1:86673676966:web:f851f535fa58d13b943267",
+  measurementId: "G-DHVKHL4YTW"
+};
+        // =======================================================================
+
+        // Inicializar o Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        // Elementos do DOM
+        const loginView = document.getElementById('login-view');
+        const protectedContent = document.getElementById('protected-content');
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const loginButton = document.getElementById('login-button');
+        const registerButton = document.getElementById('register-button');
+        const logoutButton = document.getElementById('logout-button');
+        const userEmailSpan = document.getElementById('user-email');
+        const messageDiv = document.getElementById('message');
+        const loader = document.getElementById('loader');
+
+        // FUNÇÕES DE AUTENTICAÇÃO
+        const showLoader = (show) => {
+            loader.classList.toggle('hidden', !show);
+            loginButton.disabled = show;
+            registerButton.disabled = show;
+        }
+
+        const showMessage = (text, isError = false) => {
+            messageDiv.textContent = text;
+            messageDiv.className = isError ? 'text-red-500 text-center text-sm' : 'text-green-500 text-center text-sm';
+        }
+
+        // Função de Cadastro
+        const handleRegister = async () => {
+            const email = emailInput.value;
+            const password = passwordInput.value;
+            if (!email || !password) {
+                showMessage("Por favor, preencha email e senha.", true);
+                return;
+            }
+            showLoader(true);
+            try {
+                await createUserWithEmailAndPassword(auth, email, password);
+                showMessage("Cadastro realizado com sucesso! Você já está logado.", false);
+            } catch (error) {
+                console.error("Erro no cadastro:", error.code);
+                if (error.code === 'auth/email-already-in-use') {
+                    showMessage("Este email já está em uso.", true);
+                } else if (error.code === 'auth/weak-password') {
+                    showMessage("A senha deve ter pelo menos 6 caracteres.", true);
+                } else {
+                    showMessage("Ocorreu um erro ao cadastrar.", true);
+                }
+            } finally {
+                showLoader(false);
+            }
+        };
+
+        // Função de Login
+        const handleLogin = async () => {
+            const email = emailInput.value;
+            const password = passwordInput.value;
+            if (!email || !password) {
+                showMessage("Por favor, preencha email e senha.", true);
+                return;
+            }
+            showLoader(true);
+            try {
+                await signInWithEmailAndPassword(auth, email, password);
+                // O onAuthStateChanged vai cuidar de atualizar a UI
+            } catch (error) {
+                 console.error("Erro no login:", error.code);
+                if (error.code === 'auth/invalid-credential' || error.code === 'auth/wrong-password' || error.code === 'auth/user-not-found') {
+                    showMessage("Email ou senha inválidos.", true);
+                } else {
+                    showMessage("Ocorreu um erro ao tentar entrar.", true);
+                }
+            } finally {
+                showLoader(false);
+            }
+        };
+
+        // Função de Logout
+        const handleLogout = async () => {
+            try {
+                await signOut(auth);
+            } catch (error) {
+                console.error("Erro no logout:", error);
+                showMessage("Erro ao sair.", true);
+            }
+        };
+
+        // Adicionar eventos aos botões
+        registerButton.addEventListener('click', handleRegister);
+        loginButton.addEventListener('click', handleLogin);
+        logoutButton.addEventListener('click', handleLogout);
+
+        // OUVINTE DE ESTADO DE AUTENTICAÇÃO (A MÁGICA ACONTECE AQUI)
+        // Esta função é chamada sempre que o usuário faz login ou logout
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                // Usuário está logado
+                console.log("Usuário logado:", user.email);
+                loginView.classList.add('hidden');
+                protectedContent.classList.remove('hidden');
+                userEmailSpan.textContent = user.email;
+            } else {
+                // Usuário não está logado
+                console.log("Nenhum usuário logado.");
+                loginView.classList.remove('hidden');
+                protectedContent.classList.add('hidden');
+                userEmailSpan.textContent = '';
+                emailInput.value = '';
+                passwordInput.value = '';
+                showMessage('');
+            }
+        });
+
+    </script>
+</body>
+</html>

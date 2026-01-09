@@ -1,0 +1,94 @@
+/*
+ * login.css
+ * MMB Representações Comerciais
+ * Descrição: Estilos para a página de acesso restrito (login).
+*/
+
+/* Reset e Configurações Globais (já no style.css, mas garantindo) */
+/* Este arquivo focará em sobrescrever/adicionar estilos específicos para a página de login */
+
+body {
+    background-color: var(--color-background-accent); /* Fundo sutil */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Garante que ocupe a altura total da viewport */
+    margin: 0;
+    padding: calc(var(--spacing-unit) * 2); /* Padding para telas pequenas */
+    overflow: auto; /* Permite scroll se o conteúdo for muito alto */
+}
+
+/* Opcional: Se você não quiser o container do style.css afetando */
+.main-header, .main-footer {
+    display: none; /* Esconde cabeçalho e rodapé na página de login */
+}
+
+
+/* Conteúdo da página de login (o card centralizado) */
+.login-page {
+    width: 100%;
+    max-width: 450px; /* Largura máxima do card */
+    margin: auto; /* Centraliza horizontalmente */
+}
+
+.login-card {
+    background-color: #fff;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow); /* Sombra consistente com o site */
+    padding: calc(var(--spacing-unit) * 2.5);
+    text-align: center; /* Centraliza títulos e subtítulos */
+    border: 1px solid var(--color-border); /* Borda sutil */
+}
+
+.login-title {
+    font-size: 1.8rem;
+    color: var(--color-primary-dark);
+    margin-bottom: var(--spacing-unit);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+}
+
+.login-subtitle {
+    font-size: 1rem;
+    color: var(--color-text-muted);
+    margin-bottom: calc(var(--spacing-unit) * 2);
+}
+
+/* Formulário de Login */
+.login-form {
+    text-align: left; /* Alinha labels e inputs à esquerda */
+}
+
+.form-group {
+    margin-bottom: calc(var(--spacing-unit) * 1.5);
+}
+
+.form-group label {
+    display: block; /* Garante que o label ocupe sua própria linha */
+    font-size: 0.9rem;
+    color: var(--color-text-heading);
+    margin-bottom: calc(var(--spacing-unit) / 2);
+    font-weight: 600;
+}
+
+.form-group input[type="email"],
+.form-group input[type="password"] {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    color: var(--color-text-base);
+    transition: border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+}
+
+.form-group input[type="email"]:focus,
+.form-group input[type="password"]:focus {
+    border-color: var(--color-primary);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(40, 116, 166, 0.2); /* Sombra suave no foco */
+}
+
+/* Botão de Entrar */
+.login-btn {
+    width: 100%; /* Botão ocupa 100% da largura do
