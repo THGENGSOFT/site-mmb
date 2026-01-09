@@ -3,87 +3,245 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LG STEEL | Área Restrita MMB</title>
-    <link rel="icon" type="image/png" href="img/cadeado.png">
+    <title>LG Steel | MMB Representações</title>
+    <link rel="icon" type="image/png" href="img/logo.png">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                mmb: {
+                  primary: '#003366',
+                  secondary: '#00509e',
+                }
+              }
+            }
+          }
+        }
+    </script>
+
     <style>
-        /* Um loader simples para mostrar enquanto a autenticação é verificada */
+        body { background: #f3f4f6; }
         .loader-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #f8f9fa;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: #fff; z-index: 50; display: flex;
+            align-items: center; justify-content: center;
         }
         .loader {
-            border: 5px solid #f3f3f3;
-            border-top: 5px solid #3498db;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
+            border: 4px solid #f3f3f3; border-top: 4px solid #003366;
+            border-radius: 50%; width: 40px; height: 40px;
             animation: spin 1s linear infinite;
         }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        
+        /* Estilo para imagens da galeria */
+        .product-img {
+            transition: transform 0.3s ease;
+        }
+        .product-img:hover {
+            transform: scale(1.05);
         }
     </style>
 </head>
-<body class="bg-gray-100">
+<body class="text-gray-700 font-sans">
 
-    <!-- Tela de Carregamento (visível enquanto o script verifica o login) -->
     <div id="loader" class="loader-container">
         <div class="loader"></div>
     </div>
 
-    <!-- Conteúdo Principal da Página (começa oculto) -->
-    <main id="conteudo" class="hidden container mx-auto p-8">
-        <header class="bg-white p-6 rounded-lg shadow-md mb-8 flex justify-between items-center">
-            <div>
-                <h1 class="text-3xl font-bold text-gray-800">Lg Steel Industrial e Comercial de Metais LTDA CNPJ: 20.811.992/0001-44</h1>
-                <p class="text-gray-500">Logado como: <span id="user-email" class="font-semibold"></span></p>
-            </div>
-            <a href="acesso-restrito.html" class="py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-red-600 hover:bg-red-700">
-                Sair
+    <main id="conteudo" class="hidden min-h-screen p-4 md:p-8 max-w-6xl mx-auto">
+        
+        <nav class="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
+            <a href="acesso-restrito.html" class="flex items-center gap-2 text-mmb-primary font-semibold hover:text-mmb-secondary transition">
+                <i class="fa-solid fa-arrow-left"></i> Voltar para Painel
             </a>
+            
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500 hidden md:inline">Logado como: <span id="user-email" class="font-medium text-gray-700"></span></span>
+                <button id="logout-btn" class="bg-red-100 text-red-600 px-4 py-2 rounded-lg text-sm font-bold hover:bg-red-200 transition">
+                    <i class="fa-solid fa-sign-out-alt"></i> Sair
+                </button>
+            </div>
+        </nav>
+
+        <header class="bg-white p-6 rounded-xl shadow-sm border-l-4 border-mmb-primary mb-6 flex items-start gap-4">
+            <div class="bg-blue-50 p-3 rounded-lg text-mmb-primary text-2xl">
+                <i class="fa-solid fa-layer-group"></i>
+            </div>
+            <div>
+                <h1 class="text-2xl font-bold text-gray-800">LG Steel Metais</h1>
+                <p class="text-gray-500 text-sm">LG Steel Industrial e Comercial de Metais LTDA</p>
+                <p class="text-xs text-gray-400">CNPJ: 20.811.992/0001-44</p>
+            </div>
         </header>
 
-        <div class="bg-white p-6 rounded-lg shadow-md">
-            <h2 class="text-2xl font-semibold text-gray-700 mb-4">Catálogos e Tabelas</h2>
-            <p class="mb-6">Aqui estão os links para os materiais mais recentes. Este conteúdo não é público.</p>
-            <ul class="list-disc list-inside space-y-3 text-blue-600">
-                <li><a href="tabela/TABELA PR - 2025.xlsx" class="hover:underline">Tabela de Preços - Setembro 2025</a></li>
-                <li><a href="catalogo/CATALOGO POLYMER 2025.pdf" class="hover:underline">Catálogo Completo POLLYMER 2025.pdf</a></li>
-                <li><a href="mailto:lurdes@pollymer.com.br class="hover:underline">lurdes@pollymer.com.br</a></li>
-                <li><a href="https://wa.me/5551981835563" class="hover:underline">(51) 981835563 - Lurdes Bellebone Farina</a></li>
-                <li><a href="telefonefixo:5134891195" class="hover:underline">(51) 3489-1195 - Ramal 1005</a></li>
-                <li><a href="https://pollymer.com.br/" target="_blank" class="hover:underline">Site Oficial Pollymer</a></li> 
-            </ul>
+        <div class="bg-yellow-50 border border-yellow-200 rounded-xl p-4 mb-6 flex flex-wrap gap-6 items-center justify-center text-center shadow-sm">
+            <div class="px-4">
+                <span class="block text-xs text-yellow-800 font-bold uppercase">Pedido Mínimo</span>
+                <span class="text-lg font-bold text-gray-800">R$ 1.500,00</span>
+            </div>
+            <div class="px-4 border-l border-yellow-200">
+                <span class="block text-xs text-yellow-800 font-bold uppercase">Frete</span>
+                <span class="text-lg font-bold text-red-600">FOB (Cliente Retira/Paga)</span>
+            </div>
+            <div class="px-4 border-l border-yellow-200">
+                <span class="block text-xs text-yellow-800 font-bold uppercase">Condição Pagto</span>
+                <span class="text-lg font-bold text-gray-800">30 Dias</span>
+            </div>
         </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+            
+            <div class="md:col-span-2 space-y-6">
+                
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <h2 class="text-lg font-bold text-mmb-primary mb-4 border-b pb-2">
+                        <i class="fa-solid fa-table mr-2"></i> Tabelas de Preço (PDF)
+                    </h2>
+                    <div class="space-y-3">
+                        
+                        <a href="representadas/lgsteel/Tabela LG Steel Representante - 01.2025 - 03.02.25.pdf" target="_blank" class="flex items-center gap-4 p-3 border border-gray-100 rounded-lg hover:bg-red-50 hover:border-red-200 transition group">
+                            <i class="fa-solid fa-file-pdf text-red-600 text-2xl group-hover:scale-110 transition"></i>
+                            <div>
+                                <span class="block font-semibold text-gray-800">Tabela Geral 2025</span>
+                                <span class="text-xs text-gray-500">Vigência: Fev/2025</span>
+                            </div>
+                            <i class="fa-solid fa-eye ml-auto text-gray-300 group-hover:text-red-600"></i>
+                        </a>
+
+                        <a href="representadas/lgsteel/Tabela LG Steel Representante  Pressão - 101.2025 - 03.02.pdf" target="_blank" class="flex items-center gap-4 p-3 border border-gray-100 rounded-lg hover:bg-red-50 hover:border-red-200 transition group">
+                            <i class="fa-solid fa-file-pdf text-red-600 text-2xl group-hover:scale-110 transition"></i>
+                            <div>
+                                <span class="block font-semibold text-gray-800">Tabela Arruelas de Pressão</span>
+                                <span class="text-xs text-gray-500">Vigência: Fev/2025</span>
+                            </div>
+                            <i class="fa-solid fa-eye ml-auto text-gray-300 group-hover:text-red-600"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <h2 class="text-lg font-bold text-mmb-primary mb-4 border-b pb-2">
+                        <i class="fa-solid fa-images mr-2"></i> Visualizador de Produtos
+                    </h2>
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                        
+                        <div class="text-center group">
+                            <div class="h-32 border rounded-lg flex items-center justify-center bg-gray-50 overflow-hidden mb-2">
+                                <img src="representadas/lgsteel/Arruelapressao.png" alt="Arruela de Pressão" class="product-img max-h-28 max-w-full p-2">
+                            </div>
+                            <span class="text-xs font-bold text-gray-600">Arruela de Pressão</span>
+                        </div>
+
+                        <div class="text-center group">
+                            <div class="h-32 border rounded-lg flex items-center justify-center bg-gray-50 overflow-hidden mb-2">
+                                <img src="representadas/lgsteel/DIN125.png" alt="DIN 125" class="product-img max-h-28 max-w-full p-2">
+                            </div>
+                            <span class="text-xs font-bold text-gray-600">Arruela Lisa (DIN 125)</span>
+                        </div>
+
+                        <div class="text-center group">
+                            <div class="h-32 border rounded-lg flex items-center justify-center bg-gray-50 overflow-hidden mb-2">
+                                <img src="representadas/lgsteel/Lanterneiro.png" alt="Lanterneiro" class="product-img max-h-28 max-w-full p-2">
+                            </div>
+                            <span class="text-xs font-bold text-gray-600">Lanterneiro</span>
+                        </div>
+
+                        <div class="text-center group">
+                            <div class="h-32 border rounded-lg flex items-center justify-center bg-gray-50 overflow-hidden mb-2">
+                                <img src="representadas/lgsteel/Narrou.png" alt="Narrou" class="product-img max-h-28 max-w-full p-2">
+                            </div>
+                            <span class="text-xs font-bold text-gray-600">Arruela Narrou</span>
+                        </div>
+
+                        <div class="text-center group">
+                            <div class="h-32 border rounded-lg flex items-center justify-center bg-gray-50 overflow-hidden mb-2">
+                                <img src="representadas/lgsteel/Serie994-polegadas.png" alt="Série 994" class="product-img max-h-28 max-w-full p-2">
+                            </div>
+                            <span class="text-xs font-bold text-gray-600">Série 994 (Polegadas)</span>
+                        </div>
+
+                        <div class="text-center group">
+                            <div class="h-32 border rounded-lg flex items-center justify-center bg-gray-50 overflow-hidden mb-2">
+                                <img src="representadas/lgsteel/arruelas-diversos-formatos.jpg" alt="Diversos" class="product-img max-h-28 max-w-full p-2">
+                            </div>
+                            <span class="text-xs font-bold text-gray-600">Diversos Formatos</span>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="md:col-span-1">
+                <div class="bg-white p-6 rounded-xl shadow-sm sticky top-4">
+                    <h2 class="text-lg font-bold text-mmb-primary mb-4 border-b pb-2">
+                        <i class="fa-solid fa-headset mr-2"></i> Canais de Atendimento
+                    </h2>
+                    <ul class="space-y-4">
+                        
+                        <li>
+                            <a href="https://wa.me/5511987920734" target="_blank" class="flex items-center gap-3 text-gray-700 hover:text-green-600 transition">
+                                <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center text-green-600">
+                                    <i class="fa-brands fa-whatsapp"></i>
+                                </div>
+                                <div>
+                                    <strong class="block text-sm">Gabriel (Comercial)</strong>
+                                    <span class="text-xs">(11) 98792-0734</span>
+                                </div>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="mailto:gabriel@lgsteel.com.br" class="flex items-center gap-3 text-gray-700 hover:text-blue-600 transition">
+                                <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
+                                    <i class="fa-regular fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <strong class="block text-sm">E-mail Gabriel</strong>
+                                    <span class="text-xs">gabriel@lgsteel.com.br</span>
+                                </div>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="mailto:priscila@lgsteel.com.br" class="flex items-center gap-3 text-gray-700 hover:text-blue-600 transition">
+                                <div class="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center text-purple-600">
+                                    <i class="fa-regular fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <strong class="block text-sm">E-mail Priscila</strong>
+                                    <span class="text-xs">priscila@lgsteel.com.br</span>
+                                </div>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+
     </main>
     
-    <!-- ======================================================= -->
-    <!-- SCRIPT DE VERIFICAÇÃO (O "VIGIA" DA PÁGINA)           -->
-    <!-- ======================================================= -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-        // !! IMPORTANTE !!
-        // Use EXATAMENTE a mesma configuração do seu arquivo de login.
         const firebaseConfig = {
-  apiKey: "AIzaSyBeYI4mBreTpAdTSD-njz2evEG2FYSx-sE",
-  authDomain: "mmbrepresentacoes-e2371.firebaseapp.com",
-  projectId: "mmbrepresentacoes-e2371",
-  storageBucket: "mmbrepresentacoes-e2371.firebasestorage.app",
-  messagingSenderId: "86673676966",
-  appId: "1:86673676966:web:f851f535fa58d13b943267",
-  measurementId: "G-DHVKHL4YTW"
-};
+          apiKey: "AIzaSyBeYI4mBreTpAdTSD-njz2evEG2FYSx-sE",
+          authDomain: "mmbrepresentacoes-e2371.firebaseapp.com",
+          projectId: "mmbrepresentacoes-e2371",
+          storageBucket: "mmbrepresentacoes-e2371.firebasestorage.app",
+          messagingSenderId: "86673676966",
+          appId: "1:86673676966:web:f851f535fa58d13b943267",
+          measurementId: "G-DHVKHL4YTW"
+        };
 
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
@@ -91,39 +249,26 @@
         const loader = document.getElementById('loader');
         const conteudo = document.getElementById('conteudo');
         const userEmailSpan = document.getElementById('user-email');
+        const logoutBtn = document.getElementById('logout-btn');
 
-        // Esta função verifica o estado do login ASSIM QUE A PÁGINA CARREGA
         onAuthStateChanged(auth, (user) => {
             if (user) {
-                // 1. O usuário ESTÁ logado.
-                console.log("Acesso autorizado para:", user.email);
-
-                // Mostra o e-mail do usuário
                 userEmailSpan.textContent = user.email;
-
-                // Esconde o loader e mostra o conteúdo da página
                 loader.style.display = 'none';
                 conteudo.classList.remove('hidden');
-
             } else {
-                // 2. O usuário NÃO está logado.
-                console.log("Acesso negado. Redirecionando para a página de login...");
-                
-                // CORREÇÃO: Constrói uma URL absoluta para o redirecionamento para evitar erros.
-                const currentPath = window.location.pathname;
-                const redirectPath = currentPath.substring(0, currentPath.lastIndexOf('/') + 1) + 'acesso-restrito.html';
-                window.location.href = redirectPath;
+                window.location.href = 'acesso-restrito.html';
             }
+        });
+
+        logoutBtn.addEventListener('click', () => {
+            signOut(auth).then(() => {
+                window.location.href = 'acesso-restrito.html';
+            }).catch((error) => {
+                console.error('Erro ao sair:', error);
+            });
         });
     </script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-

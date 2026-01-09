@@ -3,87 +3,177 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JM | Área Restrita MMB</title>
-    <link rel="icon" type="image/png" href="img/cadeado.png">
+    <title>JM Plásticos | MMB Representações</title>
+    <link rel="icon" type="image/png" href="img/logo.png">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                mmb: {
+                  primary: '#003366',
+                  secondary: '#00509e',
+                }
+              }
+            }
+          }
+        }
+    </script>
+
     <style>
-        /* Um loader simples para mostrar enquanto a autenticação é verificada */
+        body { background: #f3f4f6; }
         .loader-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #f8f9fa;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: #fff; z-index: 50; display: flex;
+            align-items: center; justify-content: center;
         }
         .loader {
-            border: 5px solid #f3f3f3;
-            border-top: 5px solid #3498db;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
+            border: 4px solid #f3f3f3; border-top: 4px solid #003366;
+            border-radius: 50%; width: 40px; height: 40px;
             animation: spin 1s linear infinite;
         }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     </style>
 </head>
-<body class="bg-gray-100">
+<body class="text-gray-700 font-sans">
 
-    <!-- Tela de Carregamento (visível enquanto o script verifica o login) -->
     <div id="loader" class="loader-container">
         <div class="loader"></div>
     </div>
 
-    <!-- Conteúdo Principal da Página (começa oculto) -->
-    <main id="conteudo" class="hidden container mx-auto p-8">
-        <header class="bg-white p-6 rounded-lg shadow-md mb-8 flex justify-between items-center">
-            <div>
-                <h1 class="text-3xl font-bold text-gray-800">Jm Plasticos J A dos Santos Moreira CNPJ: 41.550.444/0001-88</h1>
-                <p class="text-gray-500">Logado como: <span id="user-email" class="font-semibold"></span></p>
-            </div>
-            <a href="acesso-restrito.html" class="py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-red-600 hover:bg-red-700">
-                Sair
+    <main id="conteudo" class="hidden min-h-screen p-4 md:p-8 max-w-5xl mx-auto">
+        
+        <nav class="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
+            <a href="acesso-restrito.html" class="flex items-center gap-2 text-mmb-primary font-semibold hover:text-mmb-secondary transition">
+                <i class="fa-solid fa-arrow-left"></i> Voltar para Painel
             </a>
+            
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500 hidden md:inline">Logado como: <span id="user-email" class="font-medium text-gray-700"></span></span>
+                <button id="logout-btn" class="bg-red-100 text-red-600 px-4 py-2 rounded-lg text-sm font-bold hover:bg-red-200 transition">
+                    <i class="fa-solid fa-sign-out-alt"></i> Sair
+                </button>
+            </div>
+        </nav>
+
+        <header class="bg-white p-6 rounded-xl shadow-sm border-l-4 border-mmb-primary mb-6 flex items-start gap-4">
+            <div class="bg-blue-50 p-3 rounded-lg text-mmb-primary text-2xl">
+                <i class="fa-solid fa-box-open"></i>
+            </div>
+            <div>
+                <h1 class="text-2xl font-bold text-gray-800">JM Plásticos</h1>
+                <p class="text-gray-500 text-sm">J A dos Santos Moreira</p>
+                <p class="text-xs text-gray-400">CNPJ: 41.550.444/0001-88</p>
+            </div>
         </header>
 
-        <div class="bg-white p-6 rounded-lg shadow-md">
-            <h2 class="text-2xl font-semibold text-gray-700 mb-4">Catálogos e Tabelas</h2>
-            <p class="mb-6">Aqui estão os links para os materiais mais recentes. Este conteúdo não é público.</p>
-            <ul class="list-disc list-inside space-y-3 text-blue-600">
-                <li><a href="tabela/TERRAPLAST Set-2025 SC e PR Representante.xls" class="hover:underline">Tabela de Preços - Setembro 2025</a></li>
-                <li><a href="catalogo/CATÁLOGO TERRAPLAST.pdf" class="hover:underline">Catálogo Completo Terraplast 2025.pdf</a></li>
-                <li><a href="mailto:comercial@terraplastsc.com.br class="hover:underline">comercial@terraplastsc.com.br</a></li>
-                <li><a href="https://wa.me/5548996012822" class="hover:underline">(48) 996012822 - Patrick</a></li>
-                <li><a href="https://www.terraplastsc.com.br/" target="_blank" class="hover:underline">Site Oficial Terraplast</a></li>
-                
-            </ul>
+        <div class="grid md:grid-cols-2 gap-6">
+            
+            <div class="bg-white p-6 rounded-xl shadow-sm">
+                <h2 class="text-lg font-bold text-mmb-primary mb-4 border-b pb-2">
+                    <i class="fa-solid fa-cloud-arrow-down mr-2"></i> Materiais Disponíveis
+                </h2>
+                <div class="space-y-3">
+                    
+                    <a href="representadas/jm/Thiago tabela de preço.xlsx" class="flex items-center gap-4 p-3 border border-gray-100 rounded-lg hover:bg-green-50 hover:border-green-200 transition group">
+                        <i class="fa-solid fa-file-excel text-green-600 text-2xl group-hover:scale-110 transition"></i>
+                        <div>
+                            <span class="block font-semibold text-gray-800">Tabela de Preços (Excel)</span>
+                            <span class="text-xs text-gray-500">Thiago - Tabela Geral</span>
+                        </div>
+                        <i class="fa-solid fa-download ml-auto text-gray-300 group-hover:text-green-600"></i>
+                    </a>
+
+                    <a href="representadas/jm/CATALOGO - JM PLASTICOS.pdf.pdf" target="_blank" class="flex items-center gap-4 p-3 border border-gray-100 rounded-lg hover:bg-red-50 hover:border-red-200 transition group">
+                        <i class="fa-solid fa-file-pdf text-red-600 text-2xl group-hover:scale-110 transition"></i>
+                        <div>
+                            <span class="block font-semibold text-gray-800">Catálogo Geral</span>
+                            <span class="text-xs text-gray-500">Linha Completa (PDF)</span>
+                        </div>
+                        <i class="fa-solid fa-eye ml-auto text-gray-300 group-hover:text-red-600"></i>
+                    </a>
+
+                    <a href="representadas/jm/Atacado - cxoctogonal.pdf" target="_blank" class="flex items-center gap-4 p-3 border border-gray-100 rounded-lg hover:bg-orange-50 hover:border-orange-200 transition group">
+                        <i class="fa-solid fa-box text-orange-500 text-2xl group-hover:scale-110 transition"></i>
+                        <div>
+                            <span class="block font-semibold text-gray-800">Linha Atacado</span>
+                            <span class="text-xs text-gray-500">Caixa Octogonal (PDF)</span>
+                        </div>
+                        <i class="fa-solid fa-eye ml-auto text-gray-300 group-hover:text-orange-500"></i>
+                    </a>
+
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl shadow-sm h-fit">
+                <h2 class="text-lg font-bold text-mmb-primary mb-4 border-b pb-2">
+                    <i class="fa-solid fa-headset mr-2"></i> Canais de Atendimento
+                </h2>
+                <ul class="space-y-4">
+                    
+                    <li>
+                        <a href="https://wa.me/5541997872037" target="_blank" class="flex items-center gap-3 text-gray-700 hover:text-green-600 transition">
+                            <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center text-green-600">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </div>
+                            <div>
+                                <strong class="block text-sm">WhatsApp Comercial</strong>
+                                <span>Vinicius</span>
+                            </div>
+                        </a>
+                    </li>
+
+                   <li>
+                        <a href="https://wa.me/5541984346378" target="_blank" class="flex items-center gap-3 text-gray-700 hover:text-green-600 transition">
+                            <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center text-green-600">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </div>
+                            <div>
+                                <strong class="block text-sm">WhatsApp Comercial</strong>
+                                <span>Pedro</span>
+                            </div>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="mailto:jmplasticosindustria@hotmail.com" class="flex items-center gap-3 text-gray-700 hover:text-blue-600 transition">
+                            <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
+                                <i class="fa-regular fa-envelope"></i>
+                            </div>
+                            <div>
+                                <strong class="block text-sm">E-mail</strong>
+                                <span>jmplasticosindustria@hotmail.com</span>
+                            </div>
+                        </a>
+                    </li>
+
+                </ul>
+                <div class="mt-4 p-3 bg-yellow-50 text-yellow-800 text-xs rounded border border-yellow-200">
+                    <i class="fa-solid fa-info-circle"></i> Para pedidos diretos na fábrica, consulte o representante.
+                </div>
+            </div>
         </div>
+
     </main>
     
-    <!-- ======================================================= -->
-    <!-- SCRIPT DE VERIFICAÇÃO (O "VIGIA" DA PÁGINA)           -->
-    <!-- ======================================================= -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-        // !! IMPORTANTE !!
-        // Use EXATAMENTE a mesma configuração do seu arquivo de login.
         const firebaseConfig = {
-  apiKey: "AIzaSyBeYI4mBreTpAdTSD-njz2evEG2FYSx-sE",
-  authDomain: "mmbrepresentacoes-e2371.firebaseapp.com",
-  projectId: "mmbrepresentacoes-e2371",
-  storageBucket: "mmbrepresentacoes-e2371.firebasestorage.app",
-  messagingSenderId: "86673676966",
-  appId: "1:86673676966:web:f851f535fa58d13b943267",
-  measurementId: "G-DHVKHL4YTW"
-};
+          apiKey: "AIzaSyBeYI4mBreTpAdTSD-njz2evEG2FYSx-sE",
+          authDomain: "mmbrepresentacoes-e2371.firebaseapp.com",
+          projectId: "mmbrepresentacoes-e2371",
+          storageBucket: "mmbrepresentacoes-e2371.firebasestorage.app",
+          messagingSenderId: "86673676966",
+          appId: "1:86673676966:web:f851f535fa58d13b943267",
+          measurementId: "G-DHVKHL4YTW"
+        };
 
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
@@ -91,39 +181,26 @@
         const loader = document.getElementById('loader');
         const conteudo = document.getElementById('conteudo');
         const userEmailSpan = document.getElementById('user-email');
+        const logoutBtn = document.getElementById('logout-btn');
 
-        // Esta função verifica o estado do login ASSIM QUE A PÁGINA CARREGA
         onAuthStateChanged(auth, (user) => {
             if (user) {
-                // 1. O usuário ESTÁ logado.
-                console.log("Acesso autorizado para:", user.email);
-
-                // Mostra o e-mail do usuário
                 userEmailSpan.textContent = user.email;
-
-                // Esconde o loader e mostra o conteúdo da página
                 loader.style.display = 'none';
                 conteudo.classList.remove('hidden');
-
             } else {
-                // 2. O usuário NÃO está logado.
-                console.log("Acesso negado. Redirecionando para a página de login...");
-                
-                // CORREÇÃO: Constrói uma URL absoluta para o redirecionamento para evitar erros.
-                const currentPath = window.location.pathname;
-                const redirectPath = currentPath.substring(0, currentPath.lastIndexOf('/') + 1) + 'acesso-restrito.html';
-                window.location.href = redirectPath;
+                window.location.href = 'acesso-restrito.html';
             }
+        });
+
+        logoutBtn.addEventListener('click', () => {
+            signOut(auth).then(() => {
+                window.location.href = 'acesso-restrito.html';
+            }).catch((error) => {
+                console.error('Erro ao sair:', error);
+            });
         });
     </script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-

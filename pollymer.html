@@ -3,87 +3,228 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>POLLYMER | Área Restrita MMB</title>
-    <link rel="icon" type="image/png" href="img/cadeado.png">
+    <title>Pollymer | MMB Representações</title>
+    <link rel="icon" type="image/png" href="img/logo.png">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                mmb: {
+                  primary: '#003366',
+                  secondary: '#00509e',
+                }
+              }
+            }
+          }
+        }
+    </script>
+
     <style>
-        /* Um loader simples para mostrar enquanto a autenticação é verificada */
+        body { background: #f3f4f6; }
         .loader-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #f8f9fa;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: #fff; z-index: 50; display: flex;
+            align-items: center; justify-content: center;
         }
         .loader {
-            border: 5px solid #f3f3f3;
-            border-top: 5px solid #3498db;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
+            border: 4px solid #f3f3f3; border-top: 4px solid #003366;
+            border-radius: 50%; width: 40px; height: 40px;
             animation: spin 1s linear infinite;
         }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     </style>
 </head>
-<body class="bg-gray-100">
+<body class="text-gray-700 font-sans">
 
-    <!-- Tela de Carregamento (visível enquanto o script verifica o login) -->
     <div id="loader" class="loader-container">
         <div class="loader"></div>
     </div>
 
-    <!-- Conteúdo Principal da Página (começa oculto) -->
-    <main id="conteudo" class="hidden container mx-auto p-8">
-        <header class="bg-white p-6 rounded-lg shadow-md mb-8 flex justify-between items-center">
-            <div>
-                <h1 class="text-3xl font-bold text-gray-800">Pollymer Polymer Industria e Comercio de Plasticos LTDA 01.978.934/0001-65</h1>
-                <p class="text-gray-500">Logado como: <span id="user-email" class="font-semibold"></span></p>
-            </div>
-            <a href="acesso-restrito.html" class="py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-red-600 hover:bg-red-700">
-                Sair
+    <main id="conteudo" class="hidden min-h-screen p-4 md:p-8 max-w-6xl mx-auto">
+        
+        <nav class="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
+            <a href="acesso-restrito.html" class="flex items-center gap-2 text-mmb-primary font-semibold hover:text-mmb-secondary transition">
+                <i class="fa-solid fa-arrow-left"></i> Voltar para Painel
             </a>
+            
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500 hidden md:inline">Logado como: <span id="user-email" class="font-medium text-gray-700"></span></span>
+                <button id="logout-btn" class="bg-red-100 text-red-600 px-4 py-2 rounded-lg text-sm font-bold hover:bg-red-200 transition">
+                    <i class="fa-solid fa-sign-out-alt"></i> Sair
+                </button>
+            </div>
+        </nav>
+
+        <header class="bg-white p-6 rounded-xl shadow-sm border-l-4 border-mmb-primary mb-6 flex items-start gap-4">
+            <div class="bg-blue-50 p-3 rounded-lg text-mmb-primary text-2xl h-16 w-16 flex items-center justify-center">
+                <i class="fa-solid fa-flask"></i>
+            </div>
+            <div>
+                <h1 class="text-2xl font-bold text-gray-800">Pollymer Plásticos</h1>
+                <p class="text-gray-500 text-sm">Razão Social: Pollymer Polymer Ind. e Com. de Plásticos LTDA</p>
+                <p class="text-xs text-gray-400">CNPJ: 01.978.934/0001-65</p>
+            </div>
         </header>
 
-        <div class="bg-white p-6 rounded-lg shadow-md">
-            <h2 class="text-2xl font-semibold text-gray-700 mb-4">Catálogos e Tabelas</h2>
-            <p class="mb-6">Aqui estão os links para os materiais mais recentes. Este conteúdo não é público.</p>
-            <ul class="list-disc list-inside space-y-3 text-blue-600">
-                <li><a href="tabela/TABELA PR - 2025.xlsx" class="hover:underline">Tabela de Preços - Setembro 2025</a></li>
-                <li><a href="catalogo/CATALOGO POLYMER 2025.pdf" class="hover:underline">Catálogo Completo POLLYMER 2025.pdf</a></li>
-                <li><a href="mailto:lurdes@pollymer.com.br class="hover:underline">lurdes@pollymer.com.br</a></li>
-                <li><a href="https://wa.me/5551981835563" class="hover:underline">(51) 981835563 - Lurdes Bellebone Farina</a></li>
-                <li><a href="telefonefixo:5134891195" class="hover:underline">(51) 3489-1195 - Ramal 1005</a></li>
-                <li><a href="https://pollymer.com.br/" target="_blank" class="hover:underline">Site Oficial Pollymer</a></li> 
-            </ul>
+        <div class="grid md:grid-cols-3 gap-6">
+            
+            <div class="md:col-span-2 space-y-6">
+                
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <h2 class="text-lg font-bold text-mmb-primary mb-4 border-b pb-2">
+                        <i class="fa-solid fa-star text-yellow-500 mr-2"></i> Materiais Essenciais
+                    </h2>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        
+                        <a href="representadas/pollymer/CATALOGO POLYMER 2025.pdf" target="_blank" class="flex items-center gap-3 p-3 border border-gray-100 rounded-lg hover:bg-red-50 hover:border-red-200 transition group">
+                            <i class="fa-solid fa-file-pdf text-red-600 text-2xl"></i>
+                            <div>
+                                <span class="block font-bold text-gray-800 text-sm">Catálogo 2025</span>
+                                <span class="text-xs text-gray-500">Completo (PDF)</span>
+                            </div>
+                        </a>
+
+                        <a href="representadas/pollymer/TABELA PR - 2025.xlsx" class="flex items-center gap-3 p-3 border border-gray-100 rounded-lg hover:bg-green-50 hover:border-green-200 transition group">
+                            <i class="fa-solid fa-file-excel text-green-600 text-2xl"></i>
+                            <div>
+                                <span class="block font-bold text-gray-800 text-sm">Tabela Paraná 2025</span>
+                                <span class="text-xs text-gray-500">Formato Excel (.xlsx)</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <h2 class="text-lg font-bold text-mmb-primary mb-4 border-b pb-2">
+                        <i class="fa-solid fa-users mr-2"></i> Listas de Clientes por Segmento
+                    </h2>
+                    <div class="grid md:grid-cols-2 gap-3">
+                        
+                        <a href="representadas/pollymer/PET SHOP - CLIENTES 2025.xlsx" class="flex items-center gap-3 p-2 hover:bg-green-50 rounded transition">
+                            <i class="fa-solid fa-paw text-green-600"></i>
+                            <span class="text-sm font-medium">Pet Shop</span>
+                        </a>
+
+                        <a href="representadas/pollymer/UTILIDADES DOMÉSTICAS - CLIENTES 2025.xlsx" class="flex items-center gap-3 p-2 hover:bg-green-50 rounded transition">
+                            <i class="fa-solid fa-utensils text-green-600"></i>
+                            <span class="text-sm font-medium">Utilidades Domésticas</span>
+                        </a>
+
+                        <a href="representadas/pollymer/FERRAMENTAS E PESCA - CLIENTES 2025.xlsx" class="flex items-center gap-3 p-2 hover:bg-green-50 rounded transition">
+                            <i class="fa-solid fa-hammer text-green-600"></i>
+                            <span class="text-sm font-medium">Ferramentas e Pesca</span>
+                        </a>
+
+                        <a href="representadas/pollymer/FEMININA - CLIENTES 2025.xlsx" class="flex items-center gap-3 p-2 hover:bg-green-50 rounded transition">
+                            <i class="fa-solid fa-venus text-green-600"></i>
+                            <span class="text-sm font-medium">Linha Feminina</span>
+                        </a>
+
+                        <a href="representadas/pollymer/SOS - CLIENTES 2025.xlsx" class="flex items-center gap-3 p-2 hover:bg-green-50 rounded transition">
+                            <i class="fa-solid fa-kit-medical text-green-600"></i>
+                            <span class="text-sm font-medium">SOS (Primeiros Socorros)</span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <h2 class="text-lg font-bold text-mmb-primary mb-4 border-b pb-2">
+                        <i class="fa-solid fa-folder-open mr-2"></i> Documentos Administrativos
+                    </h2>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <a href="representadas/pollymer/CNPJ - POLYMER.pdf" target="_blank" class="flex items-center gap-3 text-sm text-blue-600 hover:underline">
+                            <i class="fa-solid fa-file-contract"></i> Cartão CNPJ (PDF)
+                        </a>
+                        <a href="representadas/pollymer/TABELA - COD NCM.xlsx" class="flex items-center gap-3 text-sm text-green-600 hover:underline">
+                            <i class="fa-solid fa-table"></i> Tabela de NCMs (Excel)
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="md:col-span-1">
+                <div class="bg-white p-6 rounded-xl shadow-sm sticky top-4">
+                    <h2 class="text-lg font-bold text-mmb-primary mb-4 border-b pb-2">
+                        <i class="fa-solid fa-headset mr-2"></i> Contato Direto
+                    </h2>
+                    <ul class="space-y-4">
+                        
+                        <li>
+                            <a href="https://wa.me/5551981835563" target="_blank" class="flex items-center gap-3 text-gray-700 hover:text-green-600 transition">
+                                <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center text-green-600">
+                                    <i class="fa-brands fa-whatsapp"></i>
+                                </div>
+                                <div>
+                                    <strong class="block text-sm">Lurdes B. Farina</strong>
+                                    <span class="text-xs">(51) 98183-5563</span>
+                                </div>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="tel:555134891195" class="flex items-center gap-3 text-gray-700 hover:text-mmb-primary transition">
+                                <div class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-600">
+                                    <i class="fa-solid fa-phone"></i>
+                                </div>
+                                <div>
+                                    <strong class="block text-sm">Telefone Fixo</strong>
+                                    <span class="text-xs">(51) 3489-1195 <span class="text-gray-400">|</span> R. 1005</span>
+                                </div>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="mailto:lurdes@pollymer.com.br" class="flex items-center gap-3 text-gray-700 hover:text-blue-600 transition">
+                                <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
+                                    <i class="fa-regular fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <strong class="block text-sm">E-mail Comercial</strong>
+                                    <span class="text-xs">lurdes@pollymer.com.br</span>
+                                </div>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="https://pollymer.com.br/" target="_blank" class="flex items-center gap-3 text-gray-700 hover:text-mmb-primary transition">
+                                <div class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-600">
+                                    <i class="fa-solid fa-globe"></i>
+                                </div>
+                                <div>
+                                    <strong class="block text-sm">Site Institucional</strong>
+                                    <span class="text-xs">www.pollymer.com.br</span>
+                                </div>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
         </div>
+
     </main>
     
-    <!-- ======================================================= -->
-    <!-- SCRIPT DE VERIFICAÇÃO (O "VIGIA" DA PÁGINA)           -->
-    <!-- ======================================================= -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-        // !! IMPORTANTE !!
-        // Use EXATAMENTE a mesma configuração do seu arquivo de login.
         const firebaseConfig = {
-  apiKey: "AIzaSyBeYI4mBreTpAdTSD-njz2evEG2FYSx-sE",
-  authDomain: "mmbrepresentacoes-e2371.firebaseapp.com",
-  projectId: "mmbrepresentacoes-e2371",
-  storageBucket: "mmbrepresentacoes-e2371.firebasestorage.app",
-  messagingSenderId: "86673676966",
-  appId: "1:86673676966:web:f851f535fa58d13b943267",
-  measurementId: "G-DHVKHL4YTW"
-};
+          apiKey: "AIzaSyBeYI4mBreTpAdTSD-njz2evEG2FYSx-sE",
+          authDomain: "mmbrepresentacoes-e2371.firebaseapp.com",
+          projectId: "mmbrepresentacoes-e2371",
+          storageBucket: "mmbrepresentacoes-e2371.firebasestorage.app",
+          messagingSenderId: "86673676966",
+          appId: "1:86673676966:web:f851f535fa58d13b943267",
+          measurementId: "G-DHVKHL4YTW"
+        };
 
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
@@ -91,39 +232,26 @@
         const loader = document.getElementById('loader');
         const conteudo = document.getElementById('conteudo');
         const userEmailSpan = document.getElementById('user-email');
+        const logoutBtn = document.getElementById('logout-btn');
 
-        // Esta função verifica o estado do login ASSIM QUE A PÁGINA CARREGA
         onAuthStateChanged(auth, (user) => {
             if (user) {
-                // 1. O usuário ESTÁ logado.
-                console.log("Acesso autorizado para:", user.email);
-
-                // Mostra o e-mail do usuário
                 userEmailSpan.textContent = user.email;
-
-                // Esconde o loader e mostra o conteúdo da página
                 loader.style.display = 'none';
                 conteudo.classList.remove('hidden');
-
             } else {
-                // 2. O usuário NÃO está logado.
-                console.log("Acesso negado. Redirecionando para a página de login...");
-                
-                // CORREÇÃO: Constrói uma URL absoluta para o redirecionamento para evitar erros.
-                const currentPath = window.location.pathname;
-                const redirectPath = currentPath.substring(0, currentPath.lastIndexOf('/') + 1) + 'acesso-restrito.html';
-                window.location.href = redirectPath;
+                window.location.href = 'acesso-restrito.html';
             }
+        });
+
+        logoutBtn.addEventListener('click', () => {
+            signOut(auth).then(() => {
+                window.location.href = 'acesso-restrito.html';
+            }).catch((error) => {
+                console.error('Erro ao sair:', error);
+            });
         });
     </script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-

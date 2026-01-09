@@ -3,100 +3,195 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Acesso Restrito | MMB Representações</title>
-    <link rel="icon" type="image/png" href="img/cadeado.png">
-    <!-- Tailwind CSS para estilização rápida e moderna -->
+    <title>Área do Representante | MMB</title>
+    <link rel="icon" type="image/png" href="img/logo.png">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                mmb: {
+                  primary: '#003366', /* Azul Marinho Principal */
+                  secondary: '#00509e', /* Azul Claro */
+                  bg: '#f0f2f5'
+                }
+              }
+            }
+          }
+        }
+    </script>
+
     <style>
-        /* Estilo para a animação de carregamento */
         .loader {
-            border: 4px solid #f3f3f3;
+            border: 3px solid #f3f3f3;
             border-radius: 50%;
-            border-top: 4px solid #3498db;
-            width: 30px;
-            height: 30px;
+            border-top: 3px solid #003366;
+            width: 24px;
+            height: 24px;
             animation: spin 1s linear infinite;
         }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        
+        /* Fundo com gradiente suave */
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
         }
     </style>
 </head>
-<body class="bg-gray-100 font-sans flex items-center justify-center min-h-screen">
+<body class="font-sans min-h-screen flex flex-col items-center justify-center p-4">
 
-    <div class="container mx-auto p-4 max-w-lg">
+    <a href="index.html" class="absolute top-6 left-6 text-mmb-primary hover:text-mmb-secondary font-semibold flex items-center gap-2 transition">
+        <i class="fa-solid fa-arrow-left"></i> Voltar ao site
+    </a>
 
-        <!-- ===== TELA DE LOGIN (Visível por padrão) ===== -->
-        <div id="login-view" class="bg-white p-8 rounded-lg shadow-lg">
-            <div class="text-center mb-6">
-                <img src="img/logo.png" alt="Logo MMB Representações" class="w-48 mx-auto mb-4">
-                <h1 class="text-2xl font-bold text-gray-700">Acesso Restrito</h1>
-                <p class="text-gray-500">Faça login ou cadastre-se para continuar</p>
+    <div class="container mx-auto max-w-lg w-full">
+
+        <div id="login-view" class="bg-white p-8 rounded-xl shadow-2xl transform transition-all">
+            <div class="text-center mb-8">
+                <img src="img/logo.png" alt="MMB Logo" class="h-16 mx-auto mb-4">
+                <h1 class="text-2xl font-bold text-mmb-primary">Área do Representante</h1>
+                <p class="text-gray-500 text-sm mt-1">Acesso exclusivo para parceiros autorizados</p>
             </div>
             
-            <form id="auth-form" class="space-y-4">
+            <form id="auth-form" class="space-y-5">
                 <div>
-                    <label for="email" class="block text-sm font-medium text-gray-600">Email</label>
-                    <input type="email" id="email" name="email" required class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                    <label for="email" class="block text-sm font-medium text-gray-700 mb-1">E-mail Corporativo</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i class="fa-solid fa-envelope text-gray-400"></i>
+                        </div>
+                        <input type="email" id="email" required class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-mmb-primary focus:border-mmb-primary transition sm:text-sm" placeholder="seu@email.com">
+                    </div>
                 </div>
                 
                 <div>
-                    <label for="password" class="block text-sm font-medium text-gray-600">Senha</label>
-                    <input type="password" id="password" name="password" required class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                    <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Senha</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i class="fa-solid fa-lock text-gray-400"></i>
+                        </div>
+                        <input type="password" id="password" required class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-mmb-primary focus:border-mmb-primary transition sm:text-sm" placeholder="••••••••">
+                    </div>
                 </div>
 
-                <!-- Mensagens de Erro/Sucesso -->
-                <div id="message" class="text-center text-sm"></div>
+                <div id="message" class="text-center text-sm font-medium min-h-[20px]"></div>
                 
-                <div class="flex items-center justify-center space-x-4 pt-2">
-                    <button type="button" id="login-button" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                        Entrar
+                <div class="flex flex-col gap-3 pt-2">
+                    <button type="button" id="login-button" class="w-full flex justify-center items-center py-2.5 px-4 border border-transparent rounded-lg shadow-sm text-sm font-bold text-white bg-mmb-primary hover:bg-mmb-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-mmb-primary transition-colors">
+                        Acessar Sistema
                     </button>
-                    <button type="button" id="register-button" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
-                        Cadastrar
+                    
+                    <button type="button" id="register-button" class="w-full flex justify-center py-2 px-4 border border-gray-300 rounded-lg shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition-colors">
+                        Criar nova conta
                     </button>
                 </div>
-                 <div id="loader" class="hidden mx-auto loader"></div>
+                 <div id="loader" class="hidden mx-auto loader mt-4"></div>
             </form>
         </div>
 
-        <!-- ===== CONTEÚDO PROTEGIDO (Oculto por padrão) ===== -->
-        <div id="protected-content" class="hidden bg-white p-8 rounded-lg shadow-lg">
-            <div class="flex justify-between items-center mb-6">
-                <div>
-                    <h1 class="text-2x2 font-bold text-gray-800">Bem-vindo(a)!</h1>
-                    <p class="text-gray-600 text-2x1">Conteúdo exclusivo</p>
+        <div id="protected-content" class="hidden bg-white p-8 rounded-xl shadow-2xl w-full max-w-2xl mx-auto">
+            <div class="flex flex-col sm:flex-row justify-between items-center mb-8 border-b pb-4">
+                <div class="text-center sm:text-left mb-4 sm:mb-0">
+                    <h1 class="text-2xl font-bold text-mmb-primary">Painel de Documentos</h1>
+                    <p class="text-gray-500 text-sm">Bem-vindo(a), <span id="user-email" class="font-semibold text-mmb-secondary"></span></p>
                 </div>
-                <div>
-                     <span id="user-email" class="text-sm text-gray-500 mr-4"></span>
-                    <button id="logout-button" class="py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-red-600 hover:bg-red-700">
-                        Sair
-                    </button>   
-                </div>
+                <button id="logout-button" class="flex items-center gap-2 py-2 px-4 border border-red-200 rounded-lg text-sm font-medium text-red-600 bg-red-50 hover:bg-red-100 transition">
+                    <i class="fa-solid fa-sign-out-alt"></i> Sair
+                </button>   
             </div>
             
-            <div class="border-t pt-4">
-                <h2 class="text-xl font-semibold text-gray-700 mb-4">Seus Documentos</h2>
-                <p class="text-gray-600">
-                    Tabelas de preços, documentos internos, catálogos exclusivos e informações para a equipe.
-                </p>
-                <ul class="list-disc list-inside mt-4 space-y-2 text-gray-600">
-                    <li><a href="terraplast.html" class="text-blue-600 hover:underline"><strong><em>Terraplast Industrial de Plasticos LTDA</em></strong><br>CNPJ: 04.299.490/0001-20</a></li>
-                    <li><a href="pollymer.html" class="text-blue-600 hover:underline"><strong><em>Pollymer Polymer Industria e Comercio de Plasticos LTDA</em></strong><br>CNPJ: 01.978.934/0001-65</a></li>
-                    <li><a href="jm.html" class="text-blue-600 hover:underline"><strong><em>Jm Plasticos J A dos Santos Moreira</em></strong><br>CNPJ: 41.550.444/0001-88</a></li>
-                    <li><a href="polifix.html" class="text-blue-600 hover:underline"><strong><em>Polifix Prego Telheiro E Poletto LTDA</em></strong><br>CNPJ: 80.242.084/0001-09</a></li>
-                    <li><a href="lgsteel.html" class="text-blue-600 hover:underline"><strong><em>Lg Steel Industrial e Comercial de Metais LTDA</em></strong><br>CNPJ: 20.811.992/0001-44</a></li>
-                    <li><a href="#" class="text-blue-600 hover:underline">Política Comercial Interna.docx</a></li>
-                    <li><a href="documentos.html" class="text-blue-600 hover:underline">Documentos</a></li>
-                </ul>
+            <div>
+                <h2 class="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
+                    <i class="fa-solid fa-folder-open text-yellow-500"></i> Pastas e Arquivos
+                </h2>
+                
+                <div class="grid grid-cols-1 gap-3">
+                    
+                    <a href="terraplast.html" class="group block p-4 border border-gray-200 rounded-lg hover:border-mmb-secondary hover:shadow-md transition bg-gray-50 hover:bg-white">
+                        <div class="flex items-start gap-3">
+                            <div class="bg-blue-100 p-2 rounded text-mmb-primary group-hover:bg-mmb-primary group-hover:text-white transition">
+                                <i class="fa-solid fa-industry"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-gray-800 group-hover:text-mmb-primary">Terraplast Industrial</h3>
+                                <p class="text-xs text-gray-500">CNPJ: 04.299.490/0001-20</p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="pollymer.html" class="group block p-4 border border-gray-200 rounded-lg hover:border-mmb-secondary hover:shadow-md transition bg-gray-50 hover:bg-white">
+                        <div class="flex items-start gap-3">
+                            <div class="bg-blue-100 p-2 rounded text-mmb-primary group-hover:bg-mmb-primary group-hover:text-white transition">
+                                <i class="fa-solid fa-flask"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-gray-800 group-hover:text-mmb-primary">Pollymer Plásticos</h3>
+                                <p class="text-xs text-gray-500">CNPJ: 01.978.934/0001-65</p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="jm.html" class="group block p-4 border border-gray-200 rounded-lg hover:border-mmb-secondary hover:shadow-md transition bg-gray-50 hover:bg-white">
+                        <div class="flex items-start gap-3">
+                            <div class="bg-blue-100 p-2 rounded text-mmb-primary group-hover:bg-mmb-primary group-hover:text-white transition">
+                                <i class="fa-solid fa-box-open"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-gray-800 group-hover:text-mmb-primary">JM Plásticos</h3>
+                                <p class="text-xs text-gray-500">CNPJ: 41.550.444/0001-88</p>
+                            </div>
+                        </div>
+                    </a>
+                    
+                    <a href="polifix.html" class="group block p-4 border border-gray-200 rounded-lg hover:border-mmb-secondary hover:shadow-md transition bg-gray-50 hover:bg-white">
+                        <div class="flex items-start gap-3">
+                            <div class="bg-blue-100 p-2 rounded text-mmb-primary group-hover:bg-mmb-primary group-hover:text-white transition">
+                                <i class="fa-solid fa-hammer"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-gray-800 group-hover:text-mmb-primary">Polifix Prego Telheiro</h3>
+                                <p class="text-xs text-gray-500">CNPJ: 80.242.084/0001-09</p>
+                            </div>
+                        </div>
+                    </a>
+
+                     <a href="lgsteel.html" class="group block p-4 border border-gray-200 rounded-lg hover:border-mmb-secondary hover:shadow-md transition bg-gray-50 hover:bg-white">
+                        <div class="flex items-start gap-3">
+                            <div class="bg-blue-100 p-2 rounded text-mmb-primary group-hover:bg-mmb-primary group-hover:text-white transition">
+                                <i class="fa-solid fa-sheet-plastic"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-gray-800 group-hover:text-mmb-primary">LG Steel Metais</h3>
+                                <p class="text-xs text-gray-500">CNPJ: 20.811.992/0001-44</p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="#" class="group block p-4 border border-dashed border-gray-300 rounded-lg hover:border-mmb-secondary hover:bg-blue-50 transition">
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-file-word text-blue-600 text-xl"></i>
+                            <span class="text-gray-700 font-medium group-hover:text-mmb-primary">Política Comercial Interna.docx</span>
+                        </div>
+                    </a>
+
+                    <a href="documentos.html" class="group block p-4 border border-dashed border-gray-300 rounded-lg hover:border-mmb-secondary hover:bg-blue-50 transition">
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-folder-plus text-yellow-600 text-xl"></i>
+                            <span class="text-gray-700 font-medium group-hover:text-mmb-primary">Outros Documentos Gerais</span>
+                        </div>
+                    </a>
+
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- SCRIPTS DO FIREBASE -->
     <script type="module">
-        // Importar as funções necessárias do SDK do Firebase
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
         import { 
             getAuth, 
@@ -106,25 +201,20 @@
             onAuthStateChanged 
         } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-        // =======================================================================
-        // PASSO 1: COLE SUA CONFIGURAÇÃO DO FIREBASE AQUI
-        // =======================================================================
+        // SUAS CREDENCIAIS ORIGINAIS
         const firebaseConfig = {
-  apiKey: "AIzaSyBeYI4mBreTpAdTSD-njz2evEG2FYSx-sE",
-  authDomain: "mmbrepresentacoes-e2371.firebaseapp.com",
-  projectId: "mmbrepresentacoes-e2371",
-  storageBucket: "mmbrepresentacoes-e2371.firebasestorage.app",
-  messagingSenderId: "86673676966",
-  appId: "1:86673676966:web:f851f535fa58d13b943267",
-  measurementId: "G-DHVKHL4YTW"
-};
-        // =======================================================================
+          apiKey: "AIzaSyBeYI4mBreTpAdTSD-njz2evEG2FYSx-sE",
+          authDomain: "mmbrepresentacoes-e2371.firebaseapp.com",
+          projectId: "mmbrepresentacoes-e2371",
+          storageBucket: "mmbrepresentacoes-e2371.firebasestorage.app",
+          messagingSenderId: "86673676966",
+          appId: "1:86673676966:web:f851f535fa58d13b943267",
+          measurementId: "G-DHVKHL4YTW"
+        };
 
-        // Inicializar o Firebase
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
 
-        // Elementos do DOM
         const loginView = document.getElementById('login-view');
         const protectedContent = document.getElementById('protected-content');
         const emailInput = document.getElementById('email');
@@ -136,104 +226,117 @@
         const messageDiv = document.getElementById('message');
         const loader = document.getElementById('loader');
 
-        // FUNÇÕES DE AUTENTICAÇÃO
         const showLoader = (show) => {
             loader.classList.toggle('hidden', !show);
             loginButton.disabled = show;
             registerButton.disabled = show;
+            if(show) {
+                loginButton.classList.add('opacity-50', 'cursor-not-allowed');
+            } else {
+                loginButton.classList.remove('opacity-50', 'cursor-not-allowed');
+            }
         }
 
         const showMessage = (text, isError = false) => {
-            messageDiv.textContent = text;
-            messageDiv.className = isError ? 'text-red-500 text-center text-sm' : 'text-green-500 text-center text-sm';
+            messageDiv.innerHTML = text; // Permite HTML para ícones se precisar
+            messageDiv.className = isError 
+                ? 'text-red-600 bg-red-100 p-2 rounded border border-red-200 text-center text-sm' 
+                : 'text-green-600 bg-green-100 p-2 rounded border border-green-200 text-center text-sm';
+            
+            // Limpa mensagem após 5 segundos se não for erro crítico
+            if (!isError && text) {
+                setTimeout(() => messageDiv.textContent = '', 5000);
+            }
         }
 
-        // Função de Cadastro
         const handleRegister = async () => {
             const email = emailInput.value;
             const password = passwordInput.value;
             if (!email || !password) {
-                showMessage("Por favor, preencha email e senha.", true);
+                showMessage("<i class='fa-solid fa-circle-exclamation'></i> Preencha email e senha.", true);
                 return;
             }
             showLoader(true);
             try {
                 await createUserWithEmailAndPassword(auth, email, password);
-                showMessage("Cadastro realizado com sucesso! Você já está logado.", false);
+                showMessage("<i class='fa-solid fa-check-circle'></i> Cadastro realizado! Bem-vindo.", false);
             } catch (error) {
-                console.error("Erro no cadastro:", error.code);
+                console.error(error.code);
                 if (error.code === 'auth/email-already-in-use') {
-                    showMessage("Este email já está em uso.", true);
+                    showMessage("Este email já está cadastrado.", true);
                 } else if (error.code === 'auth/weak-password') {
-                    showMessage("A senha deve ter pelo menos 6 caracteres.", true);
+                    showMessage("Senha fraca. Use pelo menos 6 caracteres.", true);
                 } else {
-                    showMessage("Ocorreu um erro ao cadastrar.", true);
+                    showMessage("Erro ao cadastrar. Tente novamente.", true);
                 }
             } finally {
                 showLoader(false);
             }
         };
 
-        // Função de Login
         const handleLogin = async () => {
             const email = emailInput.value;
             const password = passwordInput.value;
             if (!email || !password) {
-                showMessage("Por favor, preencha email e senha.", true);
+                showMessage("<i class='fa-solid fa-circle-exclamation'></i> Preencha email e senha.", true);
                 return;
             }
             showLoader(true);
             try {
                 await signInWithEmailAndPassword(auth, email, password);
-                // O onAuthStateChanged vai cuidar de atualizar a UI
             } catch (error) {
-                 console.error("Erro no login:", error.code);
+                 console.error(error.code);
                 if (error.code === 'auth/invalid-credential' || error.code === 'auth/wrong-password' || error.code === 'auth/user-not-found') {
-                    showMessage("Email ou senha inválidos.", true);
+                    showMessage("Email ou senha incorretos.", true);
                 } else {
-                    showMessage("Ocorreu um erro ao tentar entrar.", true);
+                    showMessage("Erro de conexão.", true);
                 }
             } finally {
                 showLoader(false);
             }
         };
 
-        // Função de Logout
         const handleLogout = async () => {
             try {
                 await signOut(auth);
             } catch (error) {
-                console.error("Erro no logout:", error);
                 showMessage("Erro ao sair.", true);
             }
         };
 
-        // Adicionar eventos aos botões
         registerButton.addEventListener('click', handleRegister);
         loginButton.addEventListener('click', handleLogin);
         logoutButton.addEventListener('click', handleLogout);
 
-        // OUVINTE DE ESTADO DE AUTENTICAÇÃO (A MÁGICA ACONTECE AQUI)
-        // Esta função é chamada sempre que o usuário faz login ou logout
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                // Usuário está logado
-                console.log("Usuário logado:", user.email);
-                loginView.classList.add('hidden');
-                protectedContent.classList.remove('hidden');
-                userEmailSpan.textContent = user.email;
-            } else {
-                // Usuário não está logado
-                console.log("Nenhum usuário logado.");
-                loginView.classList.remove('hidden');
-                protectedContent.classList.add('hidden');
-                userEmailSpan.textContent = '';
-                emailInput.value = '';
-                passwordInput.value = '';
-                showMessage('');
+        // Adiciona funcionalidade de apertar ENTER para logar
+        passwordInput.addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                handleLogin();
             }
         });
 
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                loginView.classList.add('hidden');
+                protectedContent.classList.remove('hidden');
+                // Ajuste de largura do container para o conteúdo expandido
+                document.querySelector('.container').classList.remove('max-w-lg');
+                document.querySelector('.container').classList.add('max-w-4xl');
+                
+                userEmailSpan.textContent = user.email;
+                messageDiv.textContent = '';
+            } else {
+                loginView.classList.remove('hidden');
+                protectedContent.classList.add('hidden');
+                // Volta largura original para o login
+                document.querySelector('.container').classList.add('max-w-lg');
+                document.querySelector('.container').classList.remove('max-w-4xl');
+
+                userEmailSpan.textContent = '';
+                emailInput.value = '';
+                passwordInput.value = '';
+            }
+        });
     </script>
 </body>
 </html>
