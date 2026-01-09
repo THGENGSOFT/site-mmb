@@ -424,15 +424,29 @@ section {
 }
 
 /* =========================================
-   AJUSTES DA LOGO NO RODAPÉ
+   AJUSTES DA LOGO NO RODAPÉ (CORRIGIDO)
    ========================================= */
 .footer-logo {
-    max-width: 150px; /* Largura máxima */
-    margin-bottom: 15px;
+    max-width: 160px; /* Um pouco maior para leitura */
+    height: auto;
     display: block;
-    /* Se a logo tiver fundo branco chapado e ficar feio no fundo escuro,
-       podemos arredondar as bordas ou colocar um fundo branco nela: */
+    /* O segredo do alinhamento: margem automática nas laterais centraliza blocos */
+    margin: 0 auto 20px auto; 
+    
     background-color: #fff;
-    padding: 10px;
-    border-radius: 5px;
+    /* Padding ajustado para ficar mais equilibrado visualmente */
+    padding: 12px 15px; 
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2); /* Sombra suave para destacar do fundo escuro */
+}
+
+/* No Desktop, queremos que a logo alinhe a esquerda junto com o texto */
+@media (min-width: 769px) {
+    .footer-col.about {
+        text-align: left;
+    }
+    .footer-logo {
+        /* Reseta a margem automática para alinhar a esquerda no desktop */
+        margin: 0 0 20px 0;
+    }
 }
