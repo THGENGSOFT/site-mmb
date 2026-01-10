@@ -16,8 +16,8 @@
             extend: {
               colors: {
                 mmb: {
-                  primary: '#003366', /* Azul Marinho Principal */
-                  secondary: '#00509e', /* Azul Claro */
+                  primary: '#003366',
+                  secondary: '#00509e',
                   bg: '#f0f2f5'
                 }
               }
@@ -37,7 +37,6 @@
         }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
         
-        /* Fundo com gradiente suave */
         body {
             background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
         }
@@ -85,19 +84,15 @@
                     <button type="button" id="login-button" class="w-full flex justify-center items-center py-2.5 px-4 border border-transparent rounded-lg shadow-sm text-sm font-bold text-white bg-mmb-primary hover:bg-mmb-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-mmb-primary transition-colors">
                         Acessar Sistema
                     </button>
-                    
-                    <button type="button" id="register-button" class="w-full flex justify-center py-2 px-4 border border-gray-300 rounded-lg shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition-colors">
-                        Criar nova conta
-                    </button>
                 </div>
                  <div id="loader" class="hidden mx-auto loader mt-4"></div>
             </form>
         </div>
 
-        <div id="protected-content" class="hidden bg-white p-8 rounded-xl shadow-2xl w-full max-w-2xl mx-auto">
+        <div id="protected-content" class="hidden bg-white p-8 rounded-xl shadow-2xl w-full max-w-4xl mx-auto">
             <div class="flex flex-col sm:flex-row justify-between items-center mb-8 border-b pb-4">
                 <div class="text-center sm:text-left mb-4 sm:mb-0">
-                    <h1 class="text-2xl font-bold text-mmb-primary">Painel de Documentos</h1>
+                    <h1 class="text-2xl font-bold text-mmb-primary">Painel de Gestão</h1>
                     <p class="text-gray-500 text-sm">Bem-vindo(a), <span id="user-email" class="font-semibold text-mmb-secondary"></span></p>
                 </div>
                 <button id="logout-button" class="flex items-center gap-2 py-2 px-4 border border-red-200 rounded-lg text-sm font-medium text-red-600 bg-red-50 hover:bg-red-100 transition">
@@ -105,88 +100,147 @@
                 </button>   
             </div>
             
-            <div>
-                <h2 class="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
-                    <i class="fa-solid fa-folder-open text-yellow-500"></i> Pastas e Arquivos
-                </h2>
+            <div class="grid md:grid-cols-3 gap-6">
                 
-                <div class="grid grid-cols-1 gap-3">
+                <div class="md:col-span-2 space-y-6">
+                    <h2 class="text-lg font-semibold text-gray-800 flex items-center gap-2">
+                        <i class="fa-solid fa-briefcase text-yellow-500"></i> Pastas das Representadas
+                    </h2>
                     
-                    <a href="terraplast.html" class="group block p-4 border border-gray-200 rounded-lg hover:border-mmb-secondary hover:shadow-md transition bg-gray-50 hover:bg-white">
-                        <div class="flex items-start gap-3">
-                            <div class="bg-blue-100 p-2 rounded text-mmb-primary group-hover:bg-mmb-primary group-hover:text-white transition">
-                                <i class="fa-solid fa-industry"></i>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        <a href="terraplast.html" class="group block p-4 border border-gray-200 rounded-lg hover:border-mmb-secondary hover:shadow-md transition bg-gray-50 hover:bg-white">
+                            <div class="flex items-start gap-3">
+                                <div class="bg-blue-100 p-2 rounded text-mmb-primary group-hover:bg-mmb-primary group-hover:text-white transition">
+                                    <i class="fa-solid fa-industry"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-gray-800 group-hover:text-mmb-primary text-sm">Terraplast Industrial</h3>
+                                    <p class="text-xs text-gray-500">Plásticos</p>
+                                </div>
                             </div>
-                            <div>
-                                <h3 class="font-bold text-gray-800 group-hover:text-mmb-primary">Terraplast Industrial</h3>
-                                <p class="text-xs text-gray-500">CNPJ: 04.299.490/0001-20</p>
-                            </div>
-                        </div>
-                    </a>
+                        </a>
 
-                    <a href="pollymer.html" class="group block p-4 border border-gray-200 rounded-lg hover:border-mmb-secondary hover:shadow-md transition bg-gray-50 hover:bg-white">
-                        <div class="flex items-start gap-3">
-                            <div class="bg-blue-100 p-2 rounded text-mmb-primary group-hover:bg-mmb-primary group-hover:text-white transition">
-                                <i class="fa-solid fa-flask"></i>
+                        <a href="pollymer.html" class="group block p-4 border border-gray-200 rounded-lg hover:border-mmb-secondary hover:shadow-md transition bg-gray-50 hover:bg-white">
+                            <div class="flex items-start gap-3">
+                                <div class="bg-blue-100 p-2 rounded text-mmb-primary group-hover:bg-mmb-primary group-hover:text-white transition">
+                                    <i class="fa-solid fa-flask"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-gray-800 group-hover:text-mmb-primary text-sm">Pollymer Plásticos</h3>
+                                    <p class="text-xs text-gray-500">Utilidades Domésticas</p>
+                                </div>
                             </div>
-                            <div>
-                                <h3 class="font-bold text-gray-800 group-hover:text-mmb-primary">Pollymer Plásticos</h3>
-                                <p class="text-xs text-gray-500">CNPJ: 01.978.934/0001-65</p>
-                            </div>
-                        </div>
-                    </a>
+                        </a>
 
-                    <a href="jm.html" class="group block p-4 border border-gray-200 rounded-lg hover:border-mmb-secondary hover:shadow-md transition bg-gray-50 hover:bg-white">
-                        <div class="flex items-start gap-3">
-                            <div class="bg-blue-100 p-2 rounded text-mmb-primary group-hover:bg-mmb-primary group-hover:text-white transition">
-                                <i class="fa-solid fa-box-open"></i>
+                        <a href="jm.html" class="group block p-4 border border-gray-200 rounded-lg hover:border-mmb-secondary hover:shadow-md transition bg-gray-50 hover:bg-white">
+                            <div class="flex items-start gap-3">
+                                <div class="bg-blue-100 p-2 rounded text-mmb-primary group-hover:bg-mmb-primary group-hover:text-white transition">
+                                    <i class="fa-solid fa-box-open"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-gray-800 group-hover:text-mmb-primary text-sm">JM Plásticos</h3>
+                                    <p class="text-xs text-gray-500">Embalagens</p>
+                                </div>
                             </div>
-                            <div>
-                                <h3 class="font-bold text-gray-800 group-hover:text-mmb-primary">JM Plásticos</h3>
-                                <p class="text-xs text-gray-500">CNPJ: 41.550.444/0001-88</p>
+                        </a>
+                        
+                        <a href="polifix.html" class="group block p-4 border border-gray-200 rounded-lg hover:border-mmb-secondary hover:shadow-md transition bg-gray-50 hover:bg-white">
+                            <div class="flex items-start gap-3">
+                                <div class="bg-blue-100 p-2 rounded text-mmb-primary group-hover:bg-mmb-primary group-hover:text-white transition">
+                                    <i class="fa-solid fa-hammer"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-gray-800 group-hover:text-mmb-primary text-sm">Polifix</h3>
+                                    <p class="text-xs text-gray-500">Pregos e Fixação</p>
+                                </div>
                             </div>
-                        </div>
-                    </a>
+                        </a>
+
+                        <a href="lgsteel.html" class="group block p-4 border border-gray-200 rounded-lg hover:border-mmb-secondary hover:shadow-md transition bg-gray-50 hover:bg-white">
+                            <div class="flex items-start gap-3">
+                                <div class="bg-blue-100 p-2 rounded text-mmb-primary group-hover:bg-mmb-primary group-hover:text-white transition">
+                                    <i class="fa-solid fa-layer-group"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-gray-800 group-hover:text-mmb-primary text-sm">LG Steel Metais</h3>
+                                    <p class="text-xs text-gray-500">Arruelas e Estampados</p>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="endurance.html" class="group block p-4 border border-gray-200 rounded-lg hover:border-mmb-secondary hover:shadow-md transition bg-gray-50 hover:bg-white">
+                            <div class="flex items-start gap-3">
+                                <div class="bg-blue-100 p-2 rounded text-mmb-primary group-hover:bg-mmb-primary group-hover:text-white transition">
+                                    <i class="fa-solid fa-gears"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-gray-800 group-hover:text-mmb-primary text-sm">Endurance</h3>
+                                    <p class="text-xs text-gray-500">Industrial</p>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="prbombas.html" class="group block p-4 border border-gray-200 rounded-lg hover:border-mmb-secondary hover:shadow-md transition bg-gray-50 hover:bg-white">
+                            <div class="flex items-start gap-3">
+                                <div class="bg-blue-100 p-2 rounded text-mmb-primary group-hover:bg-mmb-primary group-hover:text-white transition">
+                                    <i class="fa-solid fa-water"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-gray-800 group-hover:text-mmb-primary text-sm">PR Bombas</h3>
+                                    <p class="text-xs text-gray-500">Bombas Submersas</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
                     
-                    <a href="polifix.html" class="group block p-4 border border-gray-200 rounded-lg hover:border-mmb-secondary hover:shadow-md transition bg-gray-50 hover:bg-white">
-                        <div class="flex items-start gap-3">
-                            <div class="bg-blue-100 p-2 rounded text-mmb-primary group-hover:bg-mmb-primary group-hover:text-white transition">
-                                <i class="fa-solid fa-hammer"></i>
+                    <div>
+                        <h2 class="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
+                            <i class="fa-solid fa-rocket text-blue-600"></i> Ferramentas
+                        </h2>
+                        
+                        <a href="https://sales-compass-pro.vercel.app" target="_blank" class="block p-5 bg-gradient-to-r from-blue-600 to-blue-800 rounded-xl shadow-lg text-white hover:shadow-xl hover:scale-105 transition transform mb-4">
+                            <div class="flex items-center gap-3 mb-2">
+                                <i class="fa-regular fa-compass text-2xl"></i>
+                                <span class="font-bold text-lg">Sales Compass Pro</span>
                             </div>
-                            <div>
-                                <h3 class="font-bold text-gray-800 group-hover:text-mmb-primary">Polifix Prego Telheiro</h3>
-                                <p class="text-xs text-gray-500">CNPJ: 80.242.084/0001-09</p>
-                            </div>
-                        </div>
-                    </a>
+                            <p class="text-blue-100 text-xs">Acessar Sistema de Gestão MMB</p>
+                        </a>
 
-                     <a href="lgsteel.html" class="group block p-4 border border-gray-200 rounded-lg hover:border-mmb-secondary hover:shadow-md transition bg-gray-50 hover:bg-white">
-                        <div class="flex items-start gap-3">
-                            <div class="bg-blue-100 p-2 rounded text-mmb-primary group-hover:bg-mmb-primary group-hover:text-white transition">
-                                <i class="fa-solid fa-sheet-plastic"></i>
+                        <a href="https://mail.zoho.com/zm/#stream/group/898082990/views/tome" target="_blank" class="block p-4 bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md hover:border-mmb-secondary transition group">
+                            <div class="flex items-center gap-3">
+                                <div class="bg-blue-100 p-2 rounded text-mmb-primary group-hover:bg-mmb-primary group-hover:text-white transition">
+                                    <i class="fa-solid fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <span class="block font-bold text-gray-800 text-sm group-hover:text-mmb-primary">Webmail Corporativo</span>
+                                    <p class="text-xs text-gray-500">Acessar Zoho Mail</p>
+                                </div>
                             </div>
-                            <div>
-                                <h3 class="font-bold text-gray-800 group-hover:text-mmb-primary">LG Steel Metais</h3>
-                                <p class="text-xs text-gray-500">CNPJ: 20.811.992/0001-44</p>
-                            </div>
-                        </div>
-                    </a>
+                        </a>
+                    </div>
 
-                    <a href="#" class="group block p-4 border border-dashed border-gray-300 rounded-lg hover:border-mmb-secondary hover:bg-blue-50 transition">
-                        <div class="flex items-center gap-3">
-                            <i class="fa-solid fa-file-word text-blue-600 text-xl"></i>
-                            <span class="text-gray-700 font-medium group-hover:text-mmb-primary">Política Comercial Interna.docx</span>
-                        </div>
-                    </a>
+                    <div>
+                        <h2 class="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
+                            <i class="fa-solid fa-file-contract text-gray-500"></i> Documentação
+                        </h2>
+                        <div class="space-y-3">
+                            <a href="#" class="flex items-center gap-3 p-3 bg-gray-50 border border-gray-200 rounded-lg hover:bg-white hover:border-mmb-secondary transition group">
+                                <i class="fa-solid fa-file-word text-blue-600 text-lg"></i>
+                                <span class="text-sm font-medium text-gray-700 group-hover:text-mmb-primary">Política Comercial</span>
+                            </a>
 
-                    <a href="documentos.html" class="group block p-4 border border-dashed border-gray-300 rounded-lg hover:border-mmb-secondary hover:bg-blue-50 transition">
-                        <div class="flex items-center gap-3">
-                            <i class="fa-solid fa-folder-plus text-yellow-600 text-xl"></i>
-                            <span class="text-gray-700 font-medium group-hover:text-mmb-primary">Outros Documentos Gerais</span>
+                            <a href="documentos.html" class="flex items-center gap-3 p-3 bg-gray-50 border border-gray-200 rounded-lg hover:bg-white hover:border-mmb-secondary transition group">
+                                <i class="fa-solid fa-folder-plus text-yellow-600 text-lg"></i>
+                                <span class="text-sm font-medium text-gray-700 group-hover:text-mmb-primary">Arquivos Gerais</span>
+                            </a>
                         </div>
-                    </a>
+                    </div>
 
                 </div>
+
             </div>
         </div>
     </div>
@@ -195,7 +249,6 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
         import { 
             getAuth, 
-            createUserWithEmailAndPassword, 
             signInWithEmailAndPassword, 
             signOut, 
             onAuthStateChanged 
@@ -220,7 +273,6 @@
         const emailInput = document.getElementById('email');
         const passwordInput = document.getElementById('password');
         const loginButton = document.getElementById('login-button');
-        const registerButton = document.getElementById('register-button');
         const logoutButton = document.getElementById('logout-button');
         const userEmailSpan = document.getElementById('user-email');
         const messageDiv = document.getElementById('message');
@@ -229,7 +281,6 @@
         const showLoader = (show) => {
             loader.classList.toggle('hidden', !show);
             loginButton.disabled = show;
-            registerButton.disabled = show;
             if(show) {
                 loginButton.classList.add('opacity-50', 'cursor-not-allowed');
             } else {
@@ -238,41 +289,14 @@
         }
 
         const showMessage = (text, isError = false) => {
-            messageDiv.innerHTML = text; // Permite HTML para ícones se precisar
+            messageDiv.innerHTML = text;
             messageDiv.className = isError 
                 ? 'text-red-600 bg-red-100 p-2 rounded border border-red-200 text-center text-sm' 
                 : 'text-green-600 bg-green-100 p-2 rounded border border-green-200 text-center text-sm';
-            
-            // Limpa mensagem após 5 segundos se não for erro crítico
             if (!isError && text) {
                 setTimeout(() => messageDiv.textContent = '', 5000);
             }
         }
-
-        const handleRegister = async () => {
-            const email = emailInput.value;
-            const password = passwordInput.value;
-            if (!email || !password) {
-                showMessage("<i class='fa-solid fa-circle-exclamation'></i> Preencha email e senha.", true);
-                return;
-            }
-            showLoader(true);
-            try {
-                await createUserWithEmailAndPassword(auth, email, password);
-                showMessage("<i class='fa-solid fa-check-circle'></i> Cadastro realizado! Bem-vindo.", false);
-            } catch (error) {
-                console.error(error.code);
-                if (error.code === 'auth/email-already-in-use') {
-                    showMessage("Este email já está cadastrado.", true);
-                } else if (error.code === 'auth/weak-password') {
-                    showMessage("Senha fraca. Use pelo menos 6 caracteres.", true);
-                } else {
-                    showMessage("Erro ao cadastrar. Tente novamente.", true);
-                }
-            } finally {
-                showLoader(false);
-            }
-        };
 
         const handleLogin = async () => {
             const email = emailInput.value;
@@ -304,11 +328,9 @@
             }
         };
 
-        registerButton.addEventListener('click', handleRegister);
         loginButton.addEventListener('click', handleLogin);
         logoutButton.addEventListener('click', handleLogout);
 
-        // Adiciona funcionalidade de apertar ENTER para logar
         passwordInput.addEventListener('keypress', function (e) {
             if (e.key === 'Enter') {
                 handleLogin();
@@ -319,7 +341,6 @@
             if (user) {
                 loginView.classList.add('hidden');
                 protectedContent.classList.remove('hidden');
-                // Ajuste de largura do container para o conteúdo expandido
                 document.querySelector('.container').classList.remove('max-w-lg');
                 document.querySelector('.container').classList.add('max-w-4xl');
                 
@@ -328,7 +349,6 @@
             } else {
                 loginView.classList.remove('hidden');
                 protectedContent.classList.add('hidden');
-                // Volta largura original para o login
                 document.querySelector('.container').classList.add('max-w-lg');
                 document.querySelector('.container').classList.remove('max-w-4xl');
 

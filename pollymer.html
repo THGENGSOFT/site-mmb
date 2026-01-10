@@ -72,6 +72,182 @@
             </div>
         </header>
 
+        <section class="mb-8 space-y-6">
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                    <h2 class="text-lg font-bold text-mmb-primary mb-4 border-b pb-2">
+                        <i class="fa-solid fa-scale-balanced mr-2"></i> Regras Gerais e Tributos
+                    </h2>
+                    <ul class="space-y-2 text-sm">
+                        <li class="flex justify-between border-b border-gray-100 pb-1">
+                            <span class="text-gray-500">Regime Tributário:</span>
+                            <span class="font-bold">Lucro Presumido</span>
+                        </li>
+                        <li class="flex justify-between border-b border-gray-100 pb-1">
+                            <span class="text-gray-500">ICMS:</span>
+                            <span class="font-bold">Incluso (12% - Base RS)</span>
+                        </li>
+                        <li class="flex justify-between border-b border-gray-100 pb-1">
+                            <span class="text-gray-500">Prazo Fabricação:</span>
+                            <span class="font-bold text-blue-600">Até 30 dias</span>
+                        </li>
+                        <li class="mt-2 bg-yellow-50 p-2 rounded text-xs text-yellow-800">
+                            <strong>Atenção ao IPI:</strong> Acrescer ao preço da tabela.<br>
+                            • PE 50: Dividir por 2<br>
+                            • PE 25: Dividir por 4
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                    <h2 class="text-lg font-bold text-mmb-primary mb-4 border-b pb-2">
+                        <i class="fa-solid fa-truck-fast mr-2"></i> Logística
+                    </h2>
+                    <div class="space-y-3 text-sm">
+                        <div class="flex items-center justify-between bg-gray-50 p-2 rounded">
+                            <span class="font-semibold text-gray-700">Duplicata Mínima</span>
+                            <span class="font-bold text-gray-900">R$ 800,00</span>
+                        </div>
+                        <div class="p-2">
+                            <span class="block font-bold text-gray-700 mb-1">Regra Frete FOB:</span>
+                            <p class="text-gray-600 text-xs mb-1">• Cliente indica transportadora (Nome + Tel)</p>
+                            <p class="text-gray-600 text-xs">• <strong>FOB PE 25:</strong> Pedido Mínimo R$ 3.000,00</p>
+                        </div>
+                        <div class="p-2 border-t border-gray-100">
+                             <span class="block font-bold text-gray-700 mb-1">Frete CIF (Capital):</span>
+                             <p class="text-xs text-gray-500">Válido apenas para cidades listadas abaixo.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+                <h2 class="text-lg font-bold text-mmb-primary mb-4 flex items-center">
+                    <i class="fa-solid fa-chart-line mr-2"></i> Tabela: Pedido x Desconto x Prazo
+                </h2>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm text-left">
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-100">
+                            <tr>
+                                <th class="px-4 py-3">Valor Pedido (Produtos)</th>
+                                <th class="px-4 py-3">Desconto Max</th>
+                                <th class="px-4 py-3">Sugestão de Prazo</th>
+                                <th class="px-4 py-3">Prazo Médio</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr class="bg-white">
+                                <td class="px-4 py-3 font-medium">Mínimo R$ 1.600,00</td>
+                                <td class="px-4 py-3 font-bold text-gray-400">0%</td>
+                                <td class="px-4 py-3">28dd</td>
+                                <td class="px-4 py-3">28dd</td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td class="px-4 py-3 font-medium">Acima de R$ 3.000,00</td>
+                                <td class="px-4 py-3 font-bold text-blue-600">Até 7%</td>
+                                <td class="px-4 py-3">28 / 42dd</td>
+                                <td class="px-4 py-3">35dd</td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td class="px-4 py-3 font-medium">Acima de R$ 6.000,00</td>
+                                <td class="px-4 py-3 font-bold text-blue-600">Até 15%</td>
+                                <td class="px-4 py-3">28 / 35 / 42 / 56dd</td>
+                                <td class="px-4 py-3">40dd</td>
+                            </tr>
+                            <tr class="bg-green-50">
+                                <td class="px-4 py-3 font-bold text-green-900">Acima de R$ 10.000,00</td>
+                                <td class="px-4 py-3 font-bold text-green-700">Até 20%</td>
+                                <td class="px-4 py-3 text-xs">28 / 42 / 56 / 70 / 84 / 98</td>
+                                <td class="px-4 py-3 font-bold">63dd</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="mt-2 text-xs text-gray-500 italic">
+                    * Financeiro Mensal: 3% para acréscimo ou desconto mensal. Tabela base calculada com prazo médio 60dd.
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                    <h2 class="text-lg font-bold text-mmb-primary mb-4 border-b pb-2">
+                        <i class="fa-solid fa-percent mr-2"></i> Negociação (Comissão x Desconto)
+                    </h2>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-xs text-left">
+                            <thead class="bg-gray-50 text-gray-600 uppercase">
+                                <tr>
+                                    <th class="px-3 py-2">Comissão</th>
+                                    <th class="px-3 py-2">Desconto Cliente</th>
+                                    <th class="px-3 py-2">Mínimo</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-100">
+                                <tr>
+                                    <td class="px-3 py-2 font-bold text-green-600">7%</td>
+                                    <td class="px-3 py-2">0%</td>
+                                    <td class="px-3 py-2">-</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-3 py-2 font-bold text-blue-600">6%</td>
+                                    <td class="px-3 py-2">Até 4%</td>
+                                    <td class="px-3 py-2">R$ 3.000</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-3 py-2 font-bold text-yellow-600">5%</td>
+                                    <td class="px-3 py-2">Até 7%</td>
+                                    <td class="px-3 py-2">R$ 6.000</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-3 py-2 font-bold text-red-600">4%</td>
+                                    <td class="px-3 py-2">Até 10%</td>
+                                    <td class="px-3 py-2">R$ 6.000</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 bg-orange-50">
+                    <h2 class="text-lg font-bold text-orange-800 mb-4 border-b border-orange-200 pb-2">
+                        <i class="fa-solid fa-list-check mr-2"></i> Obrigatório no Pedido
+                    </h2>
+                    <ul class="space-y-2 text-sm text-gray-800">
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-orange-600 mt-1"></i> Dados completos (Tel + E-mail NFE)</li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-orange-600 mt-1"></i> Tabela utilizada (GERAL ou PE)</li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-orange-600 mt-1"></i> Frete: CIF ou FOB (Se FOB: Nome/Tel transp.)</li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-orange-600 mt-1"></i> Descontos (Tipo e %)</li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-orange-600 mt-1"></i> Prazo Pagamento</li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-orange-600 mt-1"></i> OBS: Cor, etiqueta, cód barras, etc.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                <h2 class="text-lg font-bold text-mmb-primary mb-4 border-b pb-2">
+                    <i class="fa-solid fa-map-location-dot mr-2"></i> Frete CIF (Cidades Tabela Capital PR)
+                </h2>
+                <div class="flex flex-wrap gap-2">
+                    <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs font-semibold">Almirante Tamandaré</span>
+                    <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs font-semibold">Araucária</span>
+                    <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs font-semibold">Balsa Nova</span>
+                    <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs font-semibold">Campina Grande do Sul</span>
+                    <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs font-semibold">Campo Largo</span>
+                    <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs font-semibold">Campo Magro</span>
+                    <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs font-semibold">Colombo</span>
+                    <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-semibold">Curitiba</span>
+                    <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs font-semibold">Fazenda Rio Grande</span>
+                    <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs font-semibold">Pinhais</span>
+                    <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs font-semibold">Piraquara</span>
+                    <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs font-semibold">Quatro Barras</span>
+                    <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs font-semibold">São José dos Pinhais</span>
+                </div>
+            </div>
+        </section>
+
         <div class="grid md:grid-cols-3 gap-6">
             
             <div class="md:col-span-2 space-y-6">
