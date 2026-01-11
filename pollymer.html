@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pollymer | MMB Representações</title>
+    
+    <link rel="icon" type="image/png" href="assets/img/logo.png">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                mmb: {
+                  primary: '#003366',
+                  secondary: '#00509e',
+                }
+              }
+            }
+          }
+        }
+    </script>
+
+    <style>
+        body { background: #f3f4f6; }
+        .loader-container {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: #fff; z-index: 50; display: flex;
+            align-items: center; justify-content: center;
+        }
+        .loader {
+            border: 4px solid #f3f3f3; border-top: 4px solid #003366;
+            border-radius: 50%; width: 40px; height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body class="text-gray-700 font-sans">
+
+    <div id="loader" class="loader-container">
+        <div class="loader"></div>
+    </div>
+
+    <main id="conteudo" class="hidden min-h-screen p-4 md:p-8 max-w-6xl mx-auto">
+        
+        <nav class="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
+            <a href="acesso-restrito.html" class="flex items-center gap-2 text-mmb-primary font-semibold hover:text-mmb-secondary transition">
+                <i class="fa-solid fa-arrow-left"></i> Voltar para Painel
+            </a>
+            
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500 hidden md:inline">Logado como: <span id="user-email" class="font-medium text-gray-700"></span></span>
+                <button id="logout-btn" class="bg-red-100 text-red-600 px-4 py-2 rounded-lg text-sm font-bold hover:bg-red-200 transition">
+                    <i class="fa-solid fa-sign-out-alt"></i> Sair
+                </button>
+            </div>
+        </nav>
+
+        <header class="bg-white p-6 rounded-xl shadow-sm border-l-4 border-mmb-primary mb-6 flex items-start gap-4">
+            <div class="bg-blue-50 p-3 rounded-lg text-mmb-primary text-2xl h-16 w-16 flex items-center justify-center">
+                <i class="fa-solid fa-flask"></i>
+            </div>
+            <div>
+                <h1 class="text-2xl font-bold text-gray-800">Pollymer Plásticos</h1>
+                <p class="text-gray-500 text-sm">Razão Social: Pollymer Polymer Ind. e Com. de Plásticos LTDA</p>
+                <p class="text-xs text-gray-400">CNPJ: 01.978.934/0001-65</p>
+            </div>
+        </header>
+
+        <section class="mb-8 space-y-6">
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                    <h2 class="text-lg font-bold text-mmb-primary mb-4 border-b pb-2">
+                        <i class="fa-solid fa-scale-balanced mr-2"></i> Regras Gerais e Tributos
+                    </h2>
+                    <ul class="space-y-2 text-sm">
+                        <li class="flex justify-between border-b border-gray-100 pb-1">
+                            <span class="text-gray-500">Regime Tributário:</span>
+                            <span class="font-bold">Lucro Presumido</span>
+                        </li>
+                        <li class="flex justify-between border-b border-gray-100 pb-1">
+                            <span class="text-gray-500">ICMS:</span>
+                            <span class="font-bold">Incluso (12% - Base RS)</span>
+                        </li>
+                        <li class="flex justify-between border-b border-gray-100 pb-1">
+                            <span class="text-gray-500">Prazo Fabricação:</span>
+                            <span class="font-bold text-blue-600">Até 30 dias</span>
+                        </li>
+                        <li class="mt-2 bg-yellow-50 p-2 rounded text-xs text-yellow-800">
+                            <strong>Atenção ao IPI:</strong> Acrescer ao preço da tabela.<br>
+                            • PE 50: Dividir por 2<br>
+                            • PE 25: Dividir por 4
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                    <h2 class="text-lg font-bold text-mmb-primary mb-4 border-b pb-2">
+                        <i class="fa-solid fa-truck-fast mr-2"></i> Logística
+                    </h2>
+                    <div class="space-y-3 text-sm">
+                        <div class="flex items-center justify-between bg-gray-50 p-2 rounded">
+                            <span class="font-semibold text-gray-700">Duplicata Mínima</span>
+                            <span class="font-bold text-gray-900">R$ 800,00</span>
+                        </div>
+                        <div class="p-2">
+                            <span class="block font-bold text-gray-700 mb-1">Regra Frete FOB:</span>
+                            <p class="text-gray-600 text-xs mb-1">• Cliente indica transportadora (Nome + Tel)</p>
+                            <p class="text-gray-600 text-xs">• <strong>FOB PE 25:</strong> Pedido Mínimo R$ 3.000,00</p>
+                        </div>
+                        <div class="p-2 border-t border-gray-100">
+                             <span class="block font-bold text-gray-700 mb-1">Frete CIF (Capital):</span>
+                             <p class="text-xs text-gray-500">Válido apenas para cidades listadas abaixo.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+                <h2 class="text-lg font-bold text-mmb-primary mb-4 flex items-center">
+                    <i class="fa-solid fa-chart-line mr-2"></i> Tabela: Pedido x Desconto x Prazo
+                </h2>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm text-left">
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-100">
+                            <tr>
+                                <th class="px-4 py-3">Valor Pedido (Produtos)</th>
+                                <th class="px-4 py-3">Desconto Max</th>
+                                <th class="px-4 py-3">Sugestão de Prazo</th>
+                                <th class="px-4 py-3">Prazo Médio</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr class="bg-white">
+                                <td class="px-4 py-3 font-medium">Mínimo R$ 1.600,00</td>
+                                <td class="px-4 py-3 font-bold text-gray-400">0%</td>
+                                <td class="px-4 py-3">28dd</td>
+                                <td class="px-4 py-3">28dd</td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td class="px-4 py-3 font-medium">Acima de R$ 3.000,00</td>
+                                <td class="px-4 py-3 font-bold text-blue-600">Até 7%</td>
+                                <td class="px-4 py-3">28 / 42dd</td>
+                                <td class="px-4 py-3">35dd</td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td class="px-4 py-3 font-medium">Acima de R$ 6.000,00</td>
+                                <td class="px-4 py-3 font-bold text-blue-600">Até 15%</td>
+                                <td class="px-4 py-3">28 / 35 / 42 / 56dd</td>
+                                <td class="px-4 py-3">40dd</td>
+                            </tr>
+                            <tr class="bg-green-50">
+                                <td class="px-4 py-3 font-bold text-green-900">Acima de R$ 10.000,00</td>
+                                <td class="px-4 py-3 font-bold text-green-700">Até 20%</td>
+                                <td class="px-4 py-3 text-xs">28 / 42 / 56 / 70 / 84 / 98</td>
+                                <td class="px-4 py-3 font-bold">63dd</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="mt-2 text-xs text-gray-500 italic">
+                    * Financeiro Mensal: 3% para acréscimo ou desconto mensal. Tabela base calculada com prazo médio 60dd.
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                    <h2 class="text-lg font-bold text-mmb-primary mb-4 border-b pb-2">
+                        <i class="fa-solid fa-percent mr-2"></i> Negociação (Comissão x Desconto)
+                    </h2>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-xs text-left">
+                            <thead class="bg-gray-50 text-gray-600 uppercase">
+                                <tr>
+                                    <th class="px-3 py-2">Comissão</th>
+                                    <th class="px-3 py-2">Desconto Cliente</th>
+                                    <th class="px-3 py-2">Mínimo</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-100">
+                                <tr>
+                                    <td class="px-3 py-2 font-bold text-green-600">7%</td>
+                                    <td class="px-3 py-2">0%</td>
+                                    <td class="px-3 py-2">-</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-3 py-2 font-bold text-blue-600">6%</td>
+                                    <td class="px-3 py-2">Até 4%</td>
+                                    <td class="px-3 py-2">R$ 3.000</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-3 py-2 font-bold text-yellow-600">5%</td>
+                                    <td class="px-3 py-2">Até 7%</td>
+                                    <td class="px-3 py-2">R$ 6.000</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-3 py-2 font-bold text-red-600">4%</td>
+                                    <td class="px-3 py-2">Até 10%</td>
+                                    <td class="px-3 py-2">R$ 6.000</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 bg-orange-50">
+                    <h2 class="text-lg font-bold text-orange-800 mb-4 border-b border-orange-200 pb-2">
+                        <i class="fa-solid fa-list-check mr-2"></i> Obrigatório no Pedido
+                    </h2>
+                    <ul class="space-y-2 text-sm text-gray-800">
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-orange-600 mt-1"></i> Dados completos (Tel + E-mail NFE)</li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-orange-600 mt-1"></i> Tabela utilizada (GERAL ou PE)</li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-orange-600 mt-1"></i> Frete: CIF ou FOB (Se FOB: Nome/Tel transp.)</li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-orange-600 mt-1"></i> Descontos (Tipo e %)</li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-orange-600 mt-1"></i> Prazo Pagamento</li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-orange-600 mt-1"></i> OBS: Cor, etiqueta, cód barras, etc.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                <h2 class="text-lg font-bold text-mmb-primary mb-4 border-b pb-2">
+                    <i class="fa-solid fa-map-location-dot mr-2"></i> Frete CIF (Cidades Tabela Capital PR)
+                </h2>
+                <div class="flex flex-wrap gap-2">
+                    <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs font-semibold">Almirante Tamandaré</span>
+                    <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs font-semibold">Araucária</span>
+                    <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs font-semibold">Balsa Nova</span>
+                    <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs font-semibold">Campina Grande do Sul</span>
+                    <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs font-semibold">Campo Largo</span>
+                    <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs font-semibold">Campo Magro</span>
+                    <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs font-semibold">Colombo</span>
+                    <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-semibold">Curitiba</span>
+                    <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs font-semibold">Fazenda Rio Grande</span>
+                    <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs font-semibold">Pinhais</span>
+                    <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs font-semibold">Piraquara</span>
+                    <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs font-semibold">Quatro Barras</span>
+                    <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs font-semibold">São José dos Pinhais</span>
+                </div>
+            </div>
+        </section>
+
+        <div class="grid md:grid-cols-3 gap-6">
+            
+            <div class="md:col-span-2 space-y-6">
+                
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <h2 class="text-lg font-bold text-mmb-primary mb-4 border-b pb-2">
+                        <i class="fa-solid fa-star text-yellow-500 mr-2"></i> Materiais Essenciais
+                    </h2>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        
+                        <a href="assets/representadas/pollymer/CATALOGO POLYMER 2025.pdf" target="_blank" class="flex items-center gap-3 p-3 border border-gray-100 rounded-lg hover:bg-red-50 hover:border-red-200 transition group">
+                            <i class="fa-solid fa-file-pdf text-red-600 text-2xl"></i>
+                            <div>
+                                <span class="block font-bold text-gray-800 text-sm">Catálogo 2025</span>
+                                <span class="text-xs text-gray-500">Completo (PDF)</span>
+                            </div>
+                        </a>
+
+                        <a href="assets/representadas/pollymer/TABELA PR - 2025.xlsx" class="flex items-center gap-3 p-3 border border-gray-100 rounded-lg hover:bg-green-50 hover:border-green-200 transition group">
+                            <i class="fa-solid fa-file-excel text-green-600 text-2xl"></i>
+                            <div>
+                                <span class="block font-bold text-gray-800 text-sm">Tabela Paraná 2025</span>
+                                <span class="text-xs text-gray-500">Formato Excel (.xlsx)</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <h2 class="text-lg font-bold text-mmb-primary mb-4 border-b pb-2">
+                        <i class="fa-solid fa-users mr-2"></i> Listas de Clientes por Segmento
+                    </h2>
+                    <div class="grid md:grid-cols-2 gap-3">
+                        
+                        <a href="assets/representadas/pollymer/PET SHOP - CLIENTES 2025.xlsx" class="flex items-center gap-3 p-2 hover:bg-green-50 rounded transition">
+                            <i class="fa-solid fa-paw text-green-600"></i>
+                            <span class="text-sm font-medium">Pet Shop</span>
+                        </a>
+
+                        <a href="assets/representadas/pollymer/UTILIDADES DOMÉSTICAS - CLIENTES 2025.xlsx" class="flex items-center gap-3 p-2 hover:bg-green-50 rounded transition">
+                            <i class="fa-solid fa-utensils text-green-600"></i>
+                            <span class="text-sm font-medium">Utilidades Domésticas</span>
+                        </a>
+
+                        <a href="assets/representadas/pollymer/FERRAMENTAS E PESCA - CLIENTES 2025.xlsx" class="flex items-center gap-3 p-2 hover:bg-green-50 rounded transition">
+                            <i class="fa-solid fa-hammer text-green-600"></i>
+                            <span class="text-sm font-medium">Ferramentas e Pesca</span>
+                        </a>
+
+                        <a href="assets/representadas/pollymer/FEMININA - CLIENTES 2025.xlsx" class="flex items-center gap-3 p-2 hover:bg-green-50 rounded transition">
+                            <i class="fa-solid fa-venus text-green-600"></i>
+                            <span class="text-sm font-medium">Linha Feminina</span>
+                        </a>
+
+                        <a href="assets/representadas/pollymer/SOS - CLIENTES 2025.xlsx" class="flex items-center gap-3 p-2 hover:bg-green-50 rounded transition">
+                            <i class="fa-solid fa-kit-medical text-green-600"></i>
+                            <span class="text-sm font-medium">SOS (Primeiros Socorros)</span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <h2 class="text-lg font-bold text-mmb-primary mb-4 border-b pb-2">
+                        <i class="fa-solid fa-folder-open mr-2"></i> Documentos Administrativos
+                    </h2>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <a href="assets/representadas/pollymer/CNPJ - POLYMER.pdf" target="_blank" class="flex items-center gap-3 text-sm text-blue-600 hover:underline">
+                            <i class="fa-solid fa-file-contract"></i> Cartão CNPJ (PDF)
+                        </a>
+                        <a href="assets/representadas/pollymer/TABELA - COD NCM.xlsx" class="flex items-center gap-3 text-sm text-green-600 hover:underline">
+                            <i class="fa-solid fa-table"></i> Tabela de NCMs (Excel)
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="md:col-span-1">
+                <div class="bg-white p-6 rounded-xl shadow-sm sticky top-4">
+                    <h2 class="text-lg font-bold text-mmb-primary mb-4 border-b pb-2">
+                        <i class="fa-solid fa-headset mr-2"></i> Contato Direto
+                    </h2>
+                    <ul class="space-y-4">
+                        
+                        <li>
+                            <a href="https://wa.me/5551981835563" target="_blank" class="flex items-center gap-3 text-gray-700 hover:text-green-600 transition">
+                                <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center text-green-600">
+                                    <i class="fa-brands fa-whatsapp"></i>
+                                </div>
+                                <div>
+                                    <strong class="block text-sm">Lurdes B. Farina</strong>
+                                    <span class="text-xs">(51) 98183-5563</span>
+                                </div>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="tel:555134891195" class="flex items-center gap-3 text-gray-700 hover:text-mmb-primary transition">
+                                <div class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-600">
+                                    <i class="fa-solid fa-phone"></i>
+                                </div>
+                                <div>
+                                    <strong class="block text-sm">Telefone Fixo</strong>
+                                    <span class="text-xs">(51) 3489-1195 <span class="text-gray-400">|</span> R. 1005</span>
+                                </div>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="mailto:lurdes@pollymer.com.br" class="flex items-center gap-3 text-gray-700 hover:text-blue-600 transition">
+                                <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
+                                    <i class="fa-regular fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <strong class="block text-sm">E-mail Comercial</strong>
+                                    <span class="text-xs">lurdes@pollymer.com.br</span>
+                                </div>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="https://pollymer.com.br/" target="_blank" class="flex items-center gap-3 text-gray-700 hover:text-mmb-primary transition">
+                                <div class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-600">
+                                    <i class="fa-solid fa-globe"></i>
+                                </div>
+                                <div>
+                                    <strong class="block text-sm">Site Institucional</strong>
+                                    <span class="text-xs">www.pollymer.com.br</span>
+                                </div>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </main>
+    
+    <script type="module">
+        // Importa apenas o necessário do nosso arquivo central
+        import { auth, onAuthStateChanged, signOut } from "./assets/js/firebase-config.js";
+
+        // Elementos da Página
+        const loader = document.getElementById('loader');
+        const conteudo = document.getElementById('conteudo');
+        const userEmailSpan = document.getElementById('user-email');
+        const logoutBtn = document.getElementById('logout-btn');
+
+        // 1. Verifica Segurança
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                // Usuário Autorizado
+                userEmailSpan.textContent = user.email;
+                loader.style.display = 'none';
+                conteudo.classList.remove('hidden');
+            } else {
+                // Usuário Não Autorizado -> Chuta para fora
+                window.location.href = 'acesso-restrito.html';
+            }
+        });
+
+        // 2. Botão Sair
+        if(logoutBtn){
+            logoutBtn.addEventListener('click', () => {
+                signOut(auth).then(() => {
+                    window.location.href = 'acesso-restrito.html';
+                }).catch((error) => {
+                    console.error('Erro ao sair:', error);
+                });
+            });
+        }
+    </script>
+
+</body>
+</html>

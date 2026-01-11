@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Área do Representante | MMB</title>
+    
+    <link rel="icon" type="image/png" href="assets/img/logo.png">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                mmb: {
+                  primary: '#003366', /* Azul Marinho Principal */
+                  secondary: '#00509e', /* Azul Claro */
+                  bg: '#f0f2f5'
+                }
+              }
+            }
+          }
+        }
+    </script>
+
+    <style>
+        .loader {
+            border: 3px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 3px solid #003366;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+    </style>
+</head>
+<body class="font-sans min-h-screen flex flex-col items-center justify-center p-4">
+
+    <a href="index.html" class="absolute top-6 left-6 text-mmb-primary hover:text-mmb-secondary font-semibold flex items-center gap-2 transition">
+        <i class="fa-solid fa-arrow-left"></i> Voltar ao site
+    </a>
+
+    <div class="container mx-auto max-w-lg w-full">
+
+        <div id="login-view" class="bg-white p-8 rounded-xl shadow-2xl transform transition-all">
+            <div class="text-center mb-8">
+                <img src="assets/img/logo.png" alt="MMB Logo" class="h-16 mx-auto mb-4">
+                <h1 class="text-2xl font-bold text-mmb-primary">Área do Representante</h1>
+                <p class="text-gray-500 text-sm mt-1">Acesso exclusivo para parceiros autorizados</p>
+            </div>
+            
+            <form id="auth-form" class="space-y-5">
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700 mb-1">E-mail Corporativo</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i class="fa-solid fa-envelope text-gray-400"></i>
+                        </div>
+                        <input type="email" id="email" required class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-mmb-primary focus:border-mmb-primary transition sm:text-sm" placeholder="seu@email.com">
+                    </div>
+                </div>
+                
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Senha</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i class="fa-solid fa-lock text-gray-400"></i>
+                        </div>
+                        <input type="password" id="password" required class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-mmb-primary focus:border-mmb-primary transition sm:text-sm" placeholder="••••••••">
+                    </div>
+                </div>
+
+                <div id="message" class="text-center text-sm font-medium min-h-[20px]"></div>
+                
+                <div class="flex flex-col gap-3 pt-2">
+                    <button type="button" id="login-button" class="w-full flex justify-center items-center py-2.5 px-4 border border-transparent rounded-lg shadow-sm text-sm font-bold text-white bg-mmb-primary hover:bg-mmb-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-mmb-primary transition-colors">
+                        Acessar Sistema
+                    </button>
+                </div>
+                 <div id="loader" class="hidden mx-auto loader mt-4"></div>
+            </form>
+        </div>
+
+        <div id="protected-content" class="hidden bg-white p-8 rounded-xl shadow-2xl w-full max-w-4xl mx-auto">
+            <div class="flex flex-col sm:flex-row justify-between items-center mb-8 border-b pb-4">
+                <div class="text-center sm:text-left mb-4 sm:mb-0">
+                    <h1 class="text-2xl font-bold text-mmb-primary">Painel de Gestão</h1>
+                    <p class="text-gray-500 text-sm">Bem-vindo(a), <span id="user-email" class="font-semibold text-mmb-secondary"></span></p>
+                </div>
+                <button id="logout-button" class="flex items-center gap-2 py-2 px-4 border border-red-200 rounded-lg text-sm font-medium text-red-600 bg-red-50 hover:bg-red-100 transition">
+                    <i class="fa-solid fa-sign-out-alt"></i> Sair
+                </button>   
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                
+                <div class="md:col-span-2 space-y-6">
+                    <h2 class="text-lg font-semibold text-gray-800 flex items-center gap-2">
+                        <i class="fa-solid fa-briefcase text-yellow-500"></i> Pastas das Representadas
+                    </h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        <a href="terraplast.html" class="group block p-4 border border-gray-200 rounded-lg hover:border-mmb-secondary hover:shadow-md transition bg-gray-50 hover:bg-white">
+                            <div class="flex items-start gap-3">
+                                <div class="bg-blue-100 p-2 rounded text-mmb-primary group-hover:bg-mmb-primary group-hover:text-white transition">
+                                    <i class="fa-solid fa-industry"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-gray-800 group-hover:text-mmb-primary text-sm">Terraplast Industrial</h3>
+                                    <p class="text-xs text-gray-500">Plásticos</p>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="pollymer.html" class="group block p-4 border border-gray-200 rounded-lg hover:border-mmb-secondary hover:shadow-md transition bg-gray-50 hover:bg-white">
+                            <div class="flex items-start gap-3">
+                                <div class="bg-blue-100 p-2 rounded text-mmb-primary group-hover:bg-mmb-primary group-hover:text-white transition">
+                                    <i class="fa-solid fa-flask"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-gray-800 group-hover:text-mmb-primary text-sm">Pollymer Plásticos</h3>
+                                    <p class="text-xs text-gray-500">Utilidades Domésticas</p>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="jm.html" class="group block p-4 border border-gray-200 rounded-lg hover:border-mmb-secondary hover:shadow-md transition bg-gray-50 hover:bg-white">
+                            <div class="flex items-start gap-3">
+                                <div class="bg-blue-100 p-2 rounded text-mmb-primary group-hover:bg-mmb-primary group-hover:text-white transition">
+                                    <i class="fa-solid fa-box-open"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-gray-800 group-hover:text-mmb-primary text-sm">JM Plásticos</h3>
+                                    <p class="text-xs text-gray-500">Embalagens</p>
+                                </div>
+                            </div>
+                        </a>
+                        
+                        <a href="polifix.html" class="group block p-4 border border-gray-200 rounded-lg hover:border-mmb-secondary hover:shadow-md transition bg-gray-50 hover:bg-white">
+                            <div class="flex items-start gap-3">
+                                <div class="bg-blue-100 p-2 rounded text-mmb-primary group-hover:bg-mmb-primary group-hover:text-white transition">
+                                    <i class="fa-solid fa-hammer"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-gray-800 group-hover:text-mmb-primary text-sm">Polifix</h3>
+                                    <p class="text-xs text-gray-500">Pregos e Fixação</p>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="lgsteel.html" class="group block p-4 border border-gray-200 rounded-lg hover:border-mmb-secondary hover:shadow-md transition bg-gray-50 hover:bg-white">
+                            <div class="flex items-start gap-3">
+                                <div class="bg-blue-100 p-2 rounded text-mmb-primary group-hover:bg-mmb-primary group-hover:text-white transition">
+                                    <i class="fa-solid fa-layer-group"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-gray-800 group-hover:text-mmb-primary text-sm">LG Steel Metais</h3>
+                                    <p class="text-xs text-gray-500">Arruelas e Estampados</p>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="endurance.html" class="group block p-4 border border-gray-200 rounded-lg hover:border-mmb-secondary hover:shadow-md transition bg-gray-50 hover:bg-white">
+                            <div class="flex items-start gap-3">
+                                <div class="bg-blue-100 p-2 rounded text-mmb-primary group-hover:bg-mmb-primary group-hover:text-white transition">
+                                    <i class="fa-solid fa-gears"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-gray-800 group-hover:text-mmb-primary text-sm">Endurance</h3>
+                                    <p class="text-xs text-gray-500">Industrial</p>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="prbombas.html" class="group block p-4 border border-gray-200 rounded-lg hover:border-mmb-secondary hover:shadow-md transition bg-gray-50 hover:bg-white">
+                            <div class="flex items-start gap-3">
+                                <div class="bg-blue-100 p-2 rounded text-mmb-primary group-hover:bg-mmb-primary group-hover:text-white transition">
+                                    <i class="fa-solid fa-water"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-gray-800 group-hover:text-mmb-primary text-sm">PR Bombas</h3>
+                                    <p class="text-xs text-gray-500">Bombas Submersas</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    
+                    <div>
+                        <h2 class="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
+                            <i class="fa-solid fa-rocket text-blue-600"></i> Ferramentas
+                        </h2>
+                        
+                        <a href="https://sales-compass-pro.vercel.app" target="_blank" class="block p-5 bg-gradient-to-r from-blue-600 to-blue-800 rounded-xl shadow-lg text-white hover:shadow-xl hover:scale-105 transition transform mb-4">
+                            <div class="flex items-center gap-3 mb-2">
+                                <i class="fa-regular fa-compass text-2xl"></i>
+                                <span class="font-bold text-lg">Sales Compass Pro</span>
+                            </div>
+                            <p class="text-blue-100 text-xs">Acessar Sistema de Gestão MMB</p>
+                        </a>
+
+                        <a href="https://mail.zoho.com/zm/#stream/group/898082990/views/tome" target="_blank" class="block p-4 bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md hover:border-mmb-secondary transition group">
+                            <div class="flex items-center gap-3">
+                                <div class="bg-blue-100 p-2 rounded text-mmb-primary group-hover:bg-mmb-primary group-hover:text-white transition">
+                                    <i class="fa-solid fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <span class="block font-bold text-gray-800 text-sm group-hover:text-mmb-primary">Webmail Corporativo</span>
+                                    <p class="text-xs text-gray-500">Acessar Zoho Mail</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div>
+                        <h2 class="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
+                            <i class="fa-solid fa-file-contract text-gray-500"></i> Documentação
+                        </h2>
+                        <div class="space-y-3">
+                            <a href="#" class="flex items-center gap-3 p-3 bg-gray-50 border border-gray-200 rounded-lg hover:bg-white hover:border-mmb-secondary transition group">
+                                <i class="fa-solid fa-file-word text-blue-600 text-lg"></i>
+                                <span class="text-sm font-medium text-gray-700 group-hover:text-mmb-primary">Política Comercial</span>
+                            </a>
+
+                            <a href="documentos.html" class="flex items-center gap-3 p-3 bg-gray-50 border border-gray-200 rounded-lg hover:bg-white hover:border-mmb-secondary transition group">
+                                <i class="fa-solid fa-folder-plus text-yellow-600 text-lg"></i>
+                                <span class="text-sm font-medium text-gray-700 group-hover:text-mmb-primary">Arquivos Gerais</span>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        // Importa as configurações do nosso arquivo central (caminho corrigido)
+        import { auth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "./assets/js/firebase-config.js";
+
+        // Elementos do DOM
+        const loginView = document.getElementById('login-view');
+        const protectedContent = document.getElementById('protected-content');
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const loginButton = document.getElementById('login-button');
+        const logoutButton = document.getElementById('logout-button');
+        const userEmailSpan = document.getElementById('user-email');
+        const messageDiv = document.getElementById('message');
+        const loader = document.getElementById('loader');
+
+        // Funções de UI
+        const showLoader = (show) => {
+            loader.classList.toggle('hidden', !show);
+            loginButton.disabled = show;
+            if(show) {
+                loginButton.classList.add('opacity-50', 'cursor-not-allowed');
+            } else {
+                loginButton.classList.remove('opacity-50', 'cursor-not-allowed');
+            }
+        }
+
+        const showMessage = (text, isError = false) => {
+            messageDiv.innerHTML = text;
+            messageDiv.className = isError 
+                ? 'text-red-600 bg-red-100 p-2 rounded border border-red-200 text-center text-sm' 
+                : 'text-green-600 bg-green-100 p-2 rounded border border-green-200 text-center text-sm';
+            if (!isError && text) {
+                setTimeout(() => messageDiv.textContent = '', 5000);
+            }
+        }
+
+        // Login
+        const handleLogin = async () => {
+            const email = emailInput.value;
+            const password = passwordInput.value;
+            if (!email || !password) {
+                showMessage("<i class='fa-solid fa-circle-exclamation'></i> Preencha email e senha.", true);
+                return;
+            }
+            showLoader(true);
+            try {
+                await signInWithEmailAndPassword(auth, email, password);
+            } catch (error) {
+                 console.error(error.code);
+                if (error.code === 'auth/invalid-credential' || error.code === 'auth/wrong-password' || error.code === 'auth/user-not-found') {
+                    showMessage("Email ou senha incorretos.", true);
+                } else {
+                    showMessage("Erro de conexão.", true);
+                }
+            } finally {
+                showLoader(false);
+            }
+        };
+
+        // Logout
+        const handleLogout = async () => {
+            try {
+                await signOut(auth);
+            } catch (error) {
+                showMessage("Erro ao sair.", true);
+            }
+        };
+
+        loginButton.addEventListener('click', handleLogin);
+        logoutButton.addEventListener('click', handleLogout);
+
+        passwordInput.addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                handleLogin();
+            }
+        });
+
+        // Estado de Autenticação
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                loginView.classList.add('hidden');
+                protectedContent.classList.remove('hidden');
+                document.querySelector('.container').classList.remove('max-w-lg');
+                document.querySelector('.container').classList.add('max-w-4xl');
+                
+                userEmailSpan.textContent = user.email;
+                messageDiv.textContent = '';
+            } else {
+                loginView.classList.remove('hidden');
+                protectedContent.classList.add('hidden');
+                document.querySelector('.container').classList.add('max-w-lg');
+                document.querySelector('.container').classList.remove('max-w-4xl');
+
+                userEmailSpan.textContent = '';
+                emailInput.value = '';
+                passwordInput.value = '';
+            }
+        });
+    </script>
+</body>
+</html>

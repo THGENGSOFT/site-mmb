@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JM Plásticos | MMB Representações</title>
+    
+    <link rel="icon" type="image/png" href="assets/img/logo.png">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                mmb: {
+                  primary: '#003366',
+                  secondary: '#00509e',
+                }
+              }
+            }
+          }
+        }
+    </script>
+
+    <style>
+        body { background: #f3f4f6; }
+        .loader-container {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: #fff; z-index: 50; display: flex;
+            align-items: center; justify-content: center;
+        }
+        .loader {
+            border: 4px solid #f3f3f3; border-top: 4px solid #003366;
+            border-radius: 50%; width: 40px; height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body class="text-gray-700 font-sans">
+
+    <div id="loader" class="loader-container">
+        <div class="loader"></div>
+    </div>
+
+    <main id="conteudo" class="hidden min-h-screen p-4 md:p-8 max-w-5xl mx-auto">
+        
+        <nav class="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
+            <a href="acesso-restrito.html" class="flex items-center gap-2 text-mmb-primary font-semibold hover:text-mmb-secondary transition">
+                <i class="fa-solid fa-arrow-left"></i> Voltar para Painel
+            </a>
+            
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500 hidden md:inline">Logado como: <span id="user-email" class="font-medium text-gray-700"></span></span>
+                <button id="logout-btn" class="bg-red-100 text-red-600 px-4 py-2 rounded-lg text-sm font-bold hover:bg-red-200 transition">
+                    <i class="fa-solid fa-sign-out-alt"></i> Sair
+                </button>
+            </div>
+        </nav>
+
+        <header class="bg-white p-6 rounded-xl shadow-sm border-l-4 border-mmb-primary mb-6 flex items-start gap-4">
+            <div class="bg-blue-50 p-3 rounded-lg text-mmb-primary text-2xl">
+                <i class="fa-solid fa-box-open"></i>
+            </div>
+            <div>
+                <h1 class="text-2xl font-bold text-gray-800">JM Plásticos</h1>
+                <p class="text-gray-500 text-sm">Razão Social: J A dos Santos Moreira</p>
+                <p class="text-xs text-gray-400">CNPJ: 41.550.444/0001-88</p>
+            </div>
+        </header>
+
+        <section class="grid md:grid-cols-2 gap-6 mb-8">
+            <div class="bg-white p-6 rounded-xl shadow-sm border-t-4 border-blue-500">
+                <h2 class="text-lg font-bold text-gray-800 mb-3 flex items-center gap-2">
+                    <i class="fa-solid fa-calendar-days text-blue-600"></i> Prazos e Pagamento
+                </h2>
+                <ul class="text-sm space-y-2">
+                    <li><span class="font-bold text-gray-600">Entrega:</span> Consultar demanda da fábrica.</li>
+                    <li><span class="font-bold text-gray-600">Condição Pagto:</span> 10 / 14 / 21 / 28 / 30 dias</li>
+                </ul>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl shadow-sm border-t-4 border-yellow-500">
+                <h2 class="text-lg font-bold text-gray-800 mb-3 flex items-center gap-2">
+                    <i class="fa-solid fa-truck-fast text-yellow-600"></i> Política de Frete
+                </h2>
+                <ul class="text-sm space-y-2">
+                    <li><span class="font-bold text-green-600">CIF:</span> Apenas Curitiba e Região.</li>
+                    <li><span class="font-bold text-gray-600">Outras Regiões:</span> Negociável dependendo do volume (quantidade de unidades).</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="bg-white p-6 rounded-xl shadow-sm mb-8 overflow-hidden">
+            <h2 class="text-lg font-bold text-mmb-primary mb-4 border-b pb-2">
+                <i class="fa-solid fa-boxes-stacked mr-2"></i> Quantidades Mínimas (Atacado x Varejo)
+            </h2>
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm text-left">
+                    <thead class="bg-gray-100 text-gray-700 uppercase font-bold text-xs">
+                        <tr>
+                            <th class="px-4 py-3">Produto</th>
+                            <th class="px-4 py-3 text-center text-blue-800 bg-blue-50">Mínimo Varejo</th>
+                            <th class="px-4 py-3 text-center text-green-800 bg-green-50">Mínimo Atacado</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                        <tr>
+                            <td class="px-4 py-2 font-medium">Caixa de Correio</td>
+                            <td class="px-4 py-2 text-center bg-blue-50">40 un</td>
+                            <td class="px-4 py-2 text-center bg-green-50 font-bold">200 un</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-2 font-medium">CX Luz 2x4 Amarela</td>
+                            <td class="px-4 py-2 text-center bg-blue-50">1.000 un</td>
+                            <td class="px-4 py-2 text-center bg-green-50 font-bold">5.000 un</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-2 font-medium">CX Luz 2x4 Preta</td>
+                            <td class="px-4 py-2 text-center bg-blue-50">1.000 un</td>
+                            <td class="px-4 py-2 text-center bg-green-50 font-bold">5.000 un</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-2 font-medium">CX Luz 4x4 Amarela</td>
+                            <td class="px-4 py-2 text-center bg-blue-50">500 un</td>
+                            <td class="px-4 py-2 text-center bg-green-50 font-bold">2.000 un</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-2 font-medium">CX Luz 4x4 Preta</td>
+                            <td class="px-4 py-2 text-center bg-blue-50">500 un</td>
+                            <td class="px-4 py-2 text-center bg-green-50 font-bold">2.000 un</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-2 font-medium">CX Laje Octogonal Alta Preta</td>
+                            <td class="px-4 py-2 text-center bg-blue-50">500 un</td>
+                            <td class="px-4 py-2 text-center bg-green-50 font-bold">2.000 un</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-2 font-medium">CX Laje Octogonal Baixa Preta</td>
+                            <td class="px-4 py-2 text-center bg-blue-50">300 un</td>
+                            <td class="px-4 py-2 text-center bg-green-50 font-bold">1.000 un</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-2 font-medium">CX Laje Octogonal Alta Amarela</td>
+                            <td class="px-4 py-2 text-center bg-blue-50">500 un</td>
+                            <td class="px-4 py-2 text-center bg-green-50 font-bold">2.000 un</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-2 font-medium">CX Laje Octogonal Baixa Amarela</td>
+                            <td class="px-4 py-2 text-center bg-blue-50">300 un</td>
+                            <td class="px-4 py-2 text-center bg-green-50 font-bold">1.000 un</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="text-xs text-gray-500 mt-2 italic">* Preços: Consultar as tabelas específicas de pequenos e grandes lojistas.</p>
+        </section>
+
+        <div class="grid md:grid-cols-2 gap-6">
+            
+            <div class="bg-white p-6 rounded-xl shadow-sm">
+                <h2 class="text-lg font-bold text-mmb-primary mb-4 border-b pb-2">
+                    <i class="fa-solid fa-cloud-arrow-down mr-2"></i> Materiais Disponíveis
+                </h2>
+                <div class="space-y-3">
+                    
+                    <a href="assets/representadas/jm/Thiago tabela de preço.xlsx" class="flex items-center gap-4 p-3 border border-gray-100 rounded-lg hover:bg-green-50 hover:border-green-200 transition group">
+                        <i class="fa-solid fa-file-excel text-green-600 text-2xl group-hover:scale-110 transition"></i>
+                        <div>
+                            <span class="block font-semibold text-gray-800">Tabela de Preços (Excel)</span>
+                            <span class="text-xs text-gray-500">Thiago - Tabela Geral</span>
+                        </div>
+                        <i class="fa-solid fa-download ml-auto text-gray-300 group-hover:text-green-600"></i>
+                    </a>
+
+                    <a href="assets/representadas/jm/CATALOGO - JM PLASTICOS.pdf.pdf" target="_blank" class="flex items-center gap-4 p-3 border border-gray-100 rounded-lg hover:bg-red-50 hover:border-red-200 transition group">
+                        <i class="fa-solid fa-file-pdf text-red-600 text-2xl group-hover:scale-110 transition"></i>
+                        <div>
+                            <span class="block font-semibold text-gray-800">Catálogo Geral</span>
+                            <span class="text-xs text-gray-500">Linha Completa (PDF)</span>
+                        </div>
+                        <i class="fa-solid fa-eye ml-auto text-gray-300 group-hover:text-red-600"></i>
+                    </a>
+
+                    <a href="assets/representadas/jm/Atacado - cxoctogonal.pdf" target="_blank" class="flex items-center gap-4 p-3 border border-gray-100 rounded-lg hover:bg-orange-50 hover:border-orange-200 transition group">
+                        <i class="fa-solid fa-box text-orange-500 text-2xl group-hover:scale-110 transition"></i>
+                        <div>
+                            <span class="block font-semibold text-gray-800">Linha Atacado</span>
+                            <span class="text-xs text-gray-500">Caixa Octogonal (PDF)</span>
+                        </div>
+                        <i class="fa-solid fa-eye ml-auto text-gray-300 group-hover:text-orange-500"></i>
+                    </a>
+
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl shadow-sm h-fit">
+                <h2 class="text-lg font-bold text-mmb-primary mb-4 border-b pb-2">
+                    <i class="fa-solid fa-headset mr-2"></i> Canais de Atendimento
+                </h2>
+                <ul class="space-y-4">
+                    
+                    <li>
+                        <a href="https://wa.me/5541997872037" target="_blank" class="flex items-center gap-3 text-gray-700 hover:text-green-600 transition">
+                            <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center text-green-600">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </div>
+                            <div>
+                                <strong class="block text-sm">WhatsApp Comercial</strong>
+                                <span>Vinicius</span>
+                            </div>
+                        </a>
+                    </li>
+
+                   <li>
+                        <a href="https://wa.me/5541984346378" target="_blank" class="flex items-center gap-3 text-gray-700 hover:text-green-600 transition">
+                            <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center text-green-600">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </div>
+                            <div>
+                                <strong class="block text-sm">WhatsApp Comercial</strong>
+                                <span>Pedro</span>
+                            </div>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="mailto:jmplasticosindustria@hotmail.com" class="flex items-center gap-3 text-gray-700 hover:text-blue-600 transition">
+                            <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
+                                <i class="fa-regular fa-envelope"></i>
+                            </div>
+                            <div>
+                                <strong class="block text-sm">E-mail</strong>
+                                <span>jmplasticosindustria@hotmail.com</span>
+                            </div>
+                        </a>
+                    </li>
+
+                </ul>
+                <div class="mt-4 p-3 bg-yellow-50 text-yellow-800 text-xs rounded border border-yellow-200">
+                    <i class="fa-solid fa-info-circle"></i> Para pedidos diretos na fábrica, consulte o representante.
+                </div>
+            </div>
+        </div>
+
+    </main>
+    
+    <script type="module">
+        // Importa apenas o necessário do nosso arquivo central
+        import { auth, onAuthStateChanged, signOut } from "./assets/js/firebase-config.js";
+
+        // Elementos da Página
+        const loader = document.getElementById('loader');
+        const conteudo = document.getElementById('conteudo');
+        const userEmailSpan = document.getElementById('user-email');
+        const logoutBtn = document.getElementById('logout-btn');
+
+        // 1. Verifica Segurança
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                // Usuário Autorizado
+                if(userEmailSpan) userEmailSpan.textContent = user.email;
+                if(loader) loader.style.display = 'none';
+                if(conteudo) conteudo.classList.remove('hidden');
+            } else {
+                // Usuário Não Autorizado -> Chuta para fora
+                window.location.href = 'acesso-restrito.html';
+            }
+        });
+
+        // 2. Botão Sair
+        if(logoutBtn){
+            logoutBtn.addEventListener('click', () => {
+                signOut(auth).then(() => {
+                    window.location.href = 'acesso-restrito.html';
+                }).catch((error) => {
+                    console.error('Erro ao sair:', error);
+                });
+            });
+        }
+    </script>
+
+</body>
+</html>

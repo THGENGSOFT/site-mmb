@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terraplast | MMB Representações</title>
+    
+    <link rel="icon" type="image/png" href="assets/img/logo.png">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                mmb: {
+                  primary: '#003366',
+                  secondary: '#00509e',
+                }
+              }
+            }
+          }
+        }
+    </script>
+
+    <style>
+        body { background: #f3f4f6; }
+        .loader-container {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: #fff; z-index: 50; display: flex;
+            align-items: center; justify-content: center;
+        }
+        .loader {
+            border: 4px solid #f3f3f3; border-top: 4px solid #003366;
+            border-radius: 50%; width: 40px; height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body class="text-gray-700 font-sans">
+
+    <div id="loader" class="loader-container">
+        <div class="loader"></div>
+    </div>
+
+    <main id="conteudo" class="hidden min-h-screen p-4 md:p-8 max-w-5xl mx-auto">
+        
+        <nav class="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
+            <a href="acesso-restrito.html" class="flex items-center gap-2 text-mmb-primary font-semibold hover:text-mmb-secondary transition">
+                <i class="fa-solid fa-arrow-left"></i> Voltar para Painel
+            </a>
+            
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500 hidden md:inline">Logado como: <span id="user-email" class="font-medium text-gray-700"></span></span>
+                <button id="logout-btn" class="bg-red-100 text-red-600 px-4 py-2 rounded-lg text-sm font-bold hover:bg-red-200 transition">
+                    <i class="fa-solid fa-sign-out-alt"></i> Sair
+                </button>
+            </div>
+        </nav>
+
+        <header class="bg-white p-6 rounded-xl shadow-sm border-l-4 border-mmb-primary mb-6 flex items-start gap-4">
+            <div class="bg-blue-50 p-3 rounded-lg text-mmb-primary text-2xl">
+                <i class="fa-solid fa-industry"></i>
+            </div>
+            <div>
+                <h1 class="text-2xl font-bold text-gray-800">Terraplast Industrial</h1>
+                <p class="text-gray-500 text-sm">CNPJ: 04.299.490/0001-20</p>
+                <div class="mt-2 inline-block bg-green-100 text-green-700 text-xs px-2 py-1 rounded font-semibold">Parceiro Ativo</div>
+            </div>
+        </header>
+
+        <section class="bg-white p-6 rounded-xl shadow-sm mb-6 border border-gray-100">
+            <h2 class="text-lg font-bold text-mmb-primary mb-6 border-b pb-2 flex items-center">
+                <i class="fa-solid fa-hand-holding-dollar mr-2"></i> Condições Comerciais e Logística
+            </h2>
+
+            <div class="grid md:grid-cols-2 gap-6 mb-8">
+                <div class="bg-gray-50 rounded-lg p-5 border border-gray-200">
+                    <h3 class="font-bold text-gray-800 mb-3 flex items-center gap-2">
+                        <i class="fa-solid fa-credit-card text-blue-600"></i> Pagamento
+                    </h3>
+                    <ul class="space-y-2 text-sm">
+                        <li class="flex justify-between">
+                            <span>Prazo Médio Máximo:</span>
+                            <span class="font-bold text-gray-900">45 Dias</span>
+                        </li>
+                        <li class="flex justify-between items-center">
+                            <span>Antecipado / À Vista:</span>
+                            <span class="bg-green-100 text-green-700 px-2 py-1 rounded text-xs font-bold">3% Desconto</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-gray-50 rounded-lg p-5 border border-gray-200">
+                    <h3 class="font-bold text-gray-800 mb-3 flex items-center gap-2">
+                        <i class="fa-solid fa-truck-fast text-blue-600"></i> Frete CIF (Pedido Mínimo)
+                    </h3>
+                    <ul class="space-y-2 text-sm">
+                        <li class="border-b border-gray-200 pb-1">
+                            <span class="block text-xs text-gray-500">Litoral SC até Curitiba/PR e proximidades:</span>
+                            <span class="font-bold text-gray-900">Acima de 25 Volumes</span>
+                        </li>
+                        <li class="pt-1">
+                            <span class="block text-xs text-gray-500">Cidades Afastadas (Interior):</span>
+                            <span class="font-bold text-gray-900">Acima de 150 Volumes</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="font-bold text-gray-800 mb-4 flex items-center gap-2">
+                    <i class="fa-solid fa-chart-line text-blue-600"></i> Política de Desconto Progressivo
+                </h3>
+                <div class="overflow-x-auto rounded-lg border border-gray-200">
+                    <table class="w-full text-sm text-left text-gray-500">
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-100">
+                            <tr>
+                                <th scope="col" class="px-6 py-3">Quantidade (Volumes)</th>
+                                <th scope="col" class="px-6 py-3">Desconto Máximo Permitido</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="bg-white border-b hover:bg-gray-50">
+                                <td class="px-6 py-4 font-medium text-gray-900">Até 39 Volumes</td>
+                                <td class="px-6 py-4 text-gray-400 font-bold">0% (Tabela Cheia)</td>
+                            </tr>
+                            <tr class="bg-white border-b hover:bg-gray-50">
+                                <td class="px-6 py-4 font-medium text-gray-900">40 a 129 Volumes</td>
+                                <td class="px-6 py-4 text-blue-600 font-bold">Até 8%</td>
+                            </tr>
+                            <tr class="bg-white border-b hover:bg-gray-50">
+                                <td class="px-6 py-4 font-medium text-gray-900">130 a 499 Volumes</td>
+                                <td class="px-6 py-4 text-blue-600 font-bold">Até 12%</td>
+                            </tr>
+                            <tr class="bg-green-50 hover:bg-green-100">
+                                <td class="px-6 py-4 font-medium text-gray-900">Acima de 500 Volumes</td>
+                                <td class="px-6 py-4 text-green-700 font-bold text-base">Até 16%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+        <div class="grid md:grid-cols-2 gap-6">
+            
+            <div class="bg-white p-6 rounded-xl shadow-sm">
+                <h2 class="text-lg font-bold text-mmb-primary mb-4 border-b pb-2">
+                    <i class="fa-solid fa-cloud-arrow-down mr-2"></i> Materiais para Download
+                </h2>
+                <div class="space-y-3">
+                    
+                    <a href="assets/representadas/terraplast/TERRAPLAST Set-2025 SC e PR Representante.xls" class="flex items-center gap-4 p-3 border border-gray-100 rounded-lg hover:bg-green-50 hover:border-green-200 transition group">
+                        <i class="fa-solid fa-file-excel text-green-600 text-2xl group-hover:scale-110 transition"></i>
+                        <div>
+                            <span class="block font-semibold text-gray-800">Tabela de Preços (Excel)</span>
+                            <span class="text-xs text-gray-500">Editável - Set/2025</span>
+                        </div>
+                        <i class="fa-solid fa-download ml-auto text-gray-300 group-hover:text-green-600"></i>
+                    </a>
+
+                    <a href="assets/representadas/terraplast/Terraplast Tabela .pdf" target="_blank" class="flex items-center gap-4 p-3 border border-gray-100 rounded-lg hover:bg-orange-50 hover:border-orange-200 transition group">
+                        <i class="fa-solid fa-file-pdf text-orange-500 text-2xl group-hover:scale-110 transition"></i>
+                        <div>
+                            <span class="block font-semibold text-gray-800">Tabela de Preços (PDF)</span>
+                            <span class="text-xs text-gray-500">Visualização Rápida</span>
+                        </div>
+                        <i class="fa-solid fa-eye ml-auto text-gray-300 group-hover:text-orange-500"></i>
+                    </a>
+
+                    <a href="assets/representadas/terraplast/CATALOGOTERRAPLAST.pdf" target="_blank" class="flex items-center gap-4 p-3 border border-gray-100 rounded-lg hover:bg-red-50 hover:border-red-200 transition group">
+                        <i class="fa-solid fa-book-open text-red-600 text-2xl group-hover:scale-110 transition"></i>
+                        <div>
+                            <span class="block font-semibold text-gray-800">Catálogo Completo</span>
+                            <span class="text-xs text-gray-500">Produtos Linha 2025</span>
+                        </div>
+                        <i class="fa-solid fa-eye ml-auto text-gray-300 group-hover:text-red-600"></i>
+                    </a>
+
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl shadow-sm h-fit">
+                <h2 class="text-lg font-bold text-mmb-primary mb-4 border-b pb-2">
+                    <i class="fa-solid fa-headset mr-2"></i> Canais de Atendimento
+                </h2>
+                <ul class="space-y-4">
+                    
+                    <li>
+                        <a href="https://wa.me/5548996012822" target="_blank" class="flex items-center gap-3 text-gray-700 hover:text-green-600 transition">
+                            <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center text-green-600">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </div>
+                            <div>
+                                <strong class="block text-sm">WhatsApp Comercial</strong>
+                                <span>(48) 99601-2822 - Patrick</span>
+                            </div>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="mailto:comercial@terraplastsc.com.br" class="flex items-center gap-3 text-gray-700 hover:text-blue-600 transition">
+                            <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
+                                <i class="fa-regular fa-envelope"></i>
+                            </div>
+                            <div>
+                                <strong class="block text-sm">E-mail Pedidos</strong>
+                                <span>comercial@terraplastsc.com.br</span>
+                            </div>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="https://www.terraplastsc.com.br/" target="_blank" class="flex items-center gap-3 text-gray-700 hover:text-mmb-primary transition">
+                            <div class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-600">
+                                <i class="fa-solid fa-globe"></i>
+                            </div>
+                            <div>
+                                <strong class="block text-sm">Site Institucional</strong>
+                                <span>www.terraplastsc.com.br</span>
+                            </div>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+
+    </main>
+    
+    <script type="module">
+        // Importa apenas o necessário do nosso arquivo central
+        import { auth, onAuthStateChanged, signOut } from "./assets/js/firebase-config.js";
+
+        // Elementos da Página
+        const loader = document.getElementById('loader');
+        const conteudo = document.getElementById('conteudo');
+        const userEmailSpan = document.getElementById('user-email');
+        const logoutBtn = document.getElementById('logout-btn');
+
+        // 1. Verifica Segurança
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                // Usuário Autorizado
+                userEmailSpan.textContent = user.email;
+                loader.style.display = 'none';
+                conteudo.classList.remove('hidden');
+            } else {
+                // Usuário Não Autorizado -> Chuta para fora
+                window.location.href = 'acesso-restrito.html';
+            }
+        });
+
+        // 2. Botão Sair
+        if(logoutBtn){
+            logoutBtn.addEventListener('click', () => {
+                signOut(auth).then(() => {
+                    window.location.href = 'acesso-restrito.html';
+                }).catch((error) => {
+                    console.error('Erro ao sair:', error);
+                });
+            });
+        }
+    </script>
+
+</body>
+</html>

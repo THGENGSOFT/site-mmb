@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão & Estratégia | MMB</title>
+    
+    <link rel="icon" type="image/png" href="assets/img/logo.png">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                mmb: {
+                  primary: '#003366',
+                  secondary: '#00509e',
+                  accent: '#eab308', // Amarelo Ouro
+                }
+              }
+            }
+          }
+        }
+    </script>
+
+    <style>
+        body { background: #f0f2f5; }
+        .loader-container {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: #fff; z-index: 50; display: flex;
+            align-items: center; justify-content: center;
+        }
+        .loader {
+            border: 4px solid #f3f3f3; border-top: 4px solid #003366;
+            border-radius: 50%; width: 40px; height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body class="text-gray-700 font-sans">
+
+    <div id="loader" class="loader-container">
+        <div class="loader"></div>
+    </div>
+
+    <main id="conteudo" class="hidden min-h-screen p-4 md:p-8 max-w-6xl mx-auto">
+        
+        <nav class="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
+            <a href="acesso-restrito.html" class="flex items-center gap-2 text-mmb-primary font-semibold hover:text-mmb-secondary transition">
+                <i class="fa-solid fa-arrow-left"></i> Voltar para Painel
+            </a>
+            
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500 hidden md:inline">Logado como: <span id="user-email" class="font-medium text-gray-700"></span></span>
+                <button id="logout-btn" class="bg-red-100 text-red-600 px-4 py-2 rounded-lg text-sm font-bold hover:bg-red-200 transition">
+                    <i class="fa-solid fa-sign-out-alt"></i> Sair
+                </button>
+            </div>
+        </nav>
+
+        <header class="bg-gradient-to-r from-mmb-primary to-mmb-secondary p-8 rounded-xl shadow-lg mb-8 text-white flex items-center justify-between">
+            <div>
+                <h1 class="text-3xl font-bold mb-2">Central de Gestão & Estratégia</h1>
+                <p class="text-blue-100 opacity-90">Documentação interna, base de dados e ferramentas de apoio à venda.</p>
+            </div>
+            <div class="hidden md:block text-4xl opacity-20">
+                <i class="fa-solid fa-chess"></i>
+            </div>
+        </header>
+
+        <div class="grid md:grid-cols-3 gap-6">
+
+            <div class="space-y-6">
+                <div class="bg-white p-6 rounded-xl shadow-sm border-t-4 border-green-500">
+                    <h2 class="text-lg font-bold text-gray-800 mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-database text-green-600"></i> Inteligência Comercial
+                    </h2>
+                    <p class="text-sm text-gray-500 mb-4">Base de dados ativa para prospecção e roteirização.</p>
+                    
+                    <a href="assets/representadas/documentos/CLIENTES_PR_COMPLETO.xlsx" class="flex items-center gap-3 p-3 bg-green-50 border border-green-200 rounded-lg hover:bg-green-100 transition group mb-3">
+                        <div class="bg-white p-2 rounded-full text-green-600 shadow-sm">
+                            <i class="fa-solid fa-file-excel"></i>
+                        </div>
+                        <div>
+                            <span class="block font-bold text-gray-800 text-sm group-hover:text-green-800">Base Clientes PR</span>
+                            <span class="text-xs text-gray-500">Completo (.xlsx)</span>
+                        </div>
+                        <i class="fa-solid fa-download ml-auto text-green-400"></i>
+                    </a>
+                </div>
+
+                <div class="bg-gray-50 p-6 rounded-xl border border-dashed border-gray-300 opacity-70">
+                    <h2 class="text-sm font-bold text-gray-500 mb-4 uppercase tracking-wide">
+                        <i class="fa-solid fa-rocket mr-1"></i> Ferramentas Futuras
+                    </h2>
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-3 p-2 rounded bg-white border border-gray-200 text-gray-400 cursor-not-allowed">
+                            <i class="fa-solid fa-map-location-dot"></i>
+                            <span class="text-sm">Roteirização Inteligente</span>
+                        </div>
+                        <div class="flex items-center gap-3 p-2 rounded bg-white border border-gray-200 text-gray-400 cursor-not-allowed">
+                            <i class="fa-solid fa-chart-pie"></i>
+                            <span class="text-sm">Dashboard de Metas</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-6">
+                <div class="bg-white p-6 rounded-xl shadow-sm border-t-4 border-mmb-primary">
+                    <h2 class="text-lg font-bold text-gray-800 mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-briefcase text-mmb-primary"></i> Institucional MMB
+                    </h2>
+                    <p class="text-sm text-gray-500 mb-4">Documentos oficiais para envio a novos parceiros e cadastros.</p>
+
+                    <div class="space-y-3">
+                        <a href="assets/representadas/documentos/Profile.pdf" target="_blank" class="flex items-center gap-3 p-3 border border-gray-100 rounded-lg hover:bg-blue-50 transition group">
+                            <i class="fa-solid fa-id-card text-blue-600 text-xl"></i>
+                            <div>
+                                <span class="block font-bold text-gray-800 text-sm">Profile Corporativo</span>
+                                <span class="text-xs text-gray-500">Apresentação PDF</span>
+                            </div>
+                            <i class="fa-solid fa-share-nodes ml-auto text-gray-300 group-hover:text-blue-600"></i>
+                        </a>
+
+                        <a href="assets/representadas/documentos/MMB REPRESENTAÇÕES COMERCIAIS LTDA.pdf" target="_blank" class="flex items-center gap-3 p-3 border border-gray-100 rounded-lg hover:bg-blue-50 transition group">
+                            <i class="fa-solid fa-file-contract text-gray-600 text-xl"></i>
+                            <div>
+                                <span class="block font-bold text-gray-800 text-sm">Contrato Social / CNPJ</span>
+                                <span class="text-xs text-gray-500">Documentação Legal</span>
+                            </div>
+                            <i class="fa-solid fa-download ml-auto text-gray-300"></i>
+                        </a>
+
+                        <div class="flex items-center gap-3 p-3 border border-gray-100 rounded-lg">
+                            <img src="assets/representadas/documentos/logo.png" class="h-8 w-auto" alt="Logo">
+                            <div>
+                                <span class="block font-bold text-gray-800 text-sm">Logo Alta Resolução</span>
+                                <a href="assets/representadas/documentos/logo.png" download class="text-xs text-blue-600 hover:underline">Baixar PNG</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-6">
+                
+                <div class="bg-white p-6 rounded-xl shadow-sm border-t-4 border-yellow-400">
+                    <h2 class="text-lg font-bold text-gray-800 mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-lightbulb text-yellow-500"></i> Base de Conhecimento
+                    </h2>
+                    
+                    <a href="assets/representadas/documentos/FAQ REPRESENTADAS" target="_blank" class="flex items-center gap-3 p-3 bg-yellow-50 border border-yellow-100 rounded-lg hover:bg-yellow-100 transition">
+                        <i class="fa-solid fa-circle-question text-yellow-600 text-xl"></i>
+                        <div>
+                            <span class="block font-bold text-gray-800 text-sm">FAQ Representadas</span>
+                            <span class="text-xs text-gray-600">Dúvidas frequentes e processos</span>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                    <h2 class="text-lg font-bold text-gray-800 mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-link text-gray-400"></i> Links Rápidos
+                    </h2>
+                    <ul class="space-y-2 text-sm">
+                        <li>
+                            <a href="http://www.sintegra.gov.br/" target="_blank" class="flex items-center gap-2 text-gray-600 hover:text-mmb-primary transition">
+                                <i class="fa-solid fa-magnifying-glass"></i> Consulta SINTEGRA
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://servicos.receita.fazenda.gov.br/Servicos/cnpjreva/cnpjreva_solicitacao.asp" target="_blank" class="flex items-center gap-2 text-gray-600 hover:text-mmb-primary transition">
+                                <i class="fa-solid fa-building"></i> Consulta CNPJ (Receita)
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.google.com.br/maps" target="_blank" class="flex items-center gap-2 text-gray-600 hover:text-mmb-primary transition">
+                                <i class="fa-solid fa-map"></i> Google Maps
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+    
+    <script type="module">
+        // Importa apenas o necessário do nosso arquivo central
+        import { auth, onAuthStateChanged, signOut } from "./assets/js/firebase-config.js";
+
+        // Elementos da Página
+        const loader = document.getElementById('loader');
+        const conteudo = document.getElementById('conteudo');
+        const userEmailSpan = document.getElementById('user-email');
+        const logoutBtn = document.getElementById('logout-btn');
+
+        // 1. Verifica Segurança
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                // Usuário Autorizado
+                if(userEmailSpan) userEmailSpan.textContent = user.email;
+                if(loader) loader.style.display = 'none';
+                if(conteudo) conteudo.classList.remove('hidden');
+            } else {
+                // Usuário Não Autorizado -> Chuta para fora
+                window.location.href = 'acesso-restrito.html';
+            }
+        });
+
+        // 2. Botão Sair
+        if(logoutBtn){
+            logoutBtn.addEventListener('click', () => {
+                signOut(auth).then(() => {
+                    window.location.href = 'acesso-restrito.html';
+                }).catch((error) => {
+                    console.error('Erro ao sair:', error);
+                });
+            });
+        }
+    </script>
+
+</body>
+</html>
