@@ -73,44 +73,65 @@
             </div>
         </header>
 
-        <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-6 shadow-sm">
-            <div class="flex">
-                <div class="flex-shrink-0">
-                    <i class="fa-solid fa-circle-info text-yellow-400"></i>
-                </div>
-                <div class="ml-3">
-                    <p class="text-sm text-yellow-700">
-                        <strong>Status:</strong> Aguardando atualização de tabelas e catálogos para o período vigente. 
-                        Para cotações imediatas, entre em contato via WhatsApp.
-                    </p>
-                </div>
+        <section class="grid md:grid-cols-2 gap-6 mb-8">
+            <div class="bg-white p-6 rounded-xl shadow-sm border-t-4 border-blue-500">
+                <h2 class="text-lg font-bold text-gray-800 mb-3 flex items-center gap-2">
+                    <i class="fa-solid fa-hand-holding-dollar text-blue-600"></i> Condições Comerciais
+                </h2>
+                <ul class="text-sm space-y-3">
+                    <li class="flex justify-between border-b border-gray-100 pb-2">
+                        <span class="text-gray-500">Mínimo Atacado:</span>
+                        <span class="font-bold text-gray-900">1.000 Pacotes</span>
+                    </li>
+                    <li class="flex justify-between border-b border-gray-100 pb-2">
+                        <span class="text-gray-500">Mínimo Varejo:</span>
+                        <span class="font-bold text-gray-900">300 Pacotes</span>
+                    </li>
+                    <li class="flex justify-between pt-1">
+                        <span class="text-gray-500">Pagamento:</span>
+                        <span class="font-bold text-blue-700">28 / 35 / 42 Dias</span>
+                    </li>
+                </ul>
             </div>
-        </div>
+
+            <div class="bg-white p-6 rounded-xl shadow-sm border-t-4 border-yellow-500">
+                <h2 class="text-lg font-bold text-gray-800 mb-3 flex items-center gap-2">
+                    <i class="fa-solid fa-truck-fast text-yellow-600"></i> Logística e Frete
+                </h2>
+                <ul class="text-sm space-y-3">
+                    <li class="flex items-start gap-2">
+                        <i class="fa-solid fa-location-dot text-green-600 mt-1"></i>
+                        <div>
+                            <span class="font-bold text-gray-900">Frete CIF:</span>
+                            <p class="text-gray-500 text-xs">Apenas Curitiba e Região Metropolitana.</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-2 border-t border-gray-100 pt-2">
+                        <i class="fa-solid fa-box text-gray-400 mt-1"></i>
+                        <div>
+                            <span class="font-bold text-gray-900">Demais Regiões:</span>
+                            <p class="text-gray-500 text-xs">FOB (Cliente indica transportadora).</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
 
         <div class="grid md:grid-cols-2 gap-6">
             
             <div class="bg-white p-6 rounded-xl shadow-sm">
                 <h2 class="text-lg font-bold text-mmb-primary mb-4 border-b pb-2">
-                    <i class="fa-solid fa-cloud-arrow-down mr-2"></i> Materiais (Em Breve)
+                    <i class="fa-solid fa-cloud-arrow-down mr-2"></i> Materiais para Download
                 </h2>
                 <div class="space-y-3">
                     
-                    <a href="#" class="flex items-center gap-4 p-3 border border-gray-100 rounded-lg bg-gray-50 opacity-60 cursor-not-allowed">
-                        <i class="fa-solid fa-file-excel text-gray-400 text-2xl"></i>
+                    <a href="assets/representadas/polifix/polifix.pdf" target="_blank" class="flex items-center gap-4 p-3 border border-gray-100 rounded-lg hover:bg-red-50 hover:border-red-200 transition group">
+                        <i class="fa-solid fa-file-pdf text-red-600 text-2xl group-hover:scale-110 transition"></i>
                         <div>
-                            <span class="block font-semibold text-gray-600">Tabela de Preços</span>
-                            <span class="text-xs text-gray-500">Arquivo em processamento</span>
+                            <span class="block font-semibold text-gray-800">Tabela de Preços</span>
+                            <span class="text-xs text-gray-500">Arquivo PDF</span>
                         </div>
-                        <i class="fa-solid fa-clock ml-auto text-gray-400"></i>
-                    </a>
-
-                    <a href="#" class="flex items-center gap-4 p-3 border border-gray-100 rounded-lg bg-gray-50 opacity-60 cursor-not-allowed">
-                        <i class="fa-solid fa-file-pdf text-gray-400 text-2xl"></i>
-                        <div>
-                            <span class="block font-semibold text-gray-600">Catálogo de Produtos</span>
-                            <span class="text-xs text-gray-500">Arquivo em processamento</span>
-                        </div>
-                        <i class="fa-solid fa-clock ml-auto text-gray-400"></i>
+                        <i class="fa-solid fa-download ml-auto text-gray-300 group-hover:text-red-600"></i>
                     </a>
 
                 </div>
@@ -147,9 +168,6 @@
                     </li>
 
                 </ul>
-                <div class="mt-4 p-3 bg-blue-50 text-blue-800 text-xs rounded border border-blue-100">
-                    <i class="fa-solid fa-info-circle"></i> Os contatos diretos da fábrica serão disponibilizados em breve.
-                </div>
             </div>
         </div>
 
